@@ -1,4 +1,4 @@
-# Art to Design: Personal Taste Genome & Generative Design Systems
+# Art to Design: Personal Design Precepts & Generative Design Systems
 
 > An opinionated, amendable personal corpus of art, style, and visual design synthesized from 801 curated Google Arts & Culture favorites, engineered to seed operational `design.md` design systems.
 
@@ -19,7 +19,7 @@ art-to-design/
 ├── README.md                                             # Project overview & roadmap
 └── Google Arts & Culture/
     ├── plans/
-    │   └── draft_plan_1_personal_taste_genome.md        # Committed Draft Plan 1 Packet & Critique Prompts
+    │   └── draft_plan_1_design_precepts.md        # Committed Draft Plan 1 Packet & Critique Prompts
     ├── favorites.json                                    # Raw favorites baseline (801 items)
     ├── favorites.tsv                                     # Raw favorites TSV
     ├── favorites_enriched.json                           # Enriched dataset (47 columns, derived dimensions, Wikidata)
@@ -31,7 +31,7 @@ art-to-design/
 
 ## Key Artifacts & Links
 
-* **Committed Architectural Plan**: [`Google Arts & Culture/plans/draft_plan_1_personal_taste_genome.md`](Google%20Arts%20&%20Culture/plans/draft_plan_1_personal_taste_genome.md)
+* **Committed Architectural Plan**: [`Google Arts & Culture/plans/draft_plan_1_design_precepts.md`](Google%20Arts%20&%20Culture/plans/draft_plan_1_design_precepts.md)
 * **Master Google Sheet**: [Google Arts & Culture - Favorites](https://docs.google.com/spreadsheets/d/1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU/edit)
   - 802 rows × 47 columns with live `=IMAGE(...)` visual preview gallery.
 * **Google Drive Sync Folder**: `Google Arts & Culture` (ID: `REDACTED_DRIVE_FOLDER_ID`)
@@ -57,5 +57,5 @@ The next phase of multimodal analysis evaluates the corpus through 5 distinct in
 - [x] **Phase 3: Architecture Planning** — Draft Plan 1 committed with multi-lens critique prompts.
 - [ ] **Phase 4: Multimodal Analysis** — Batch structured JSON extraction across all 800 images.
 - [ ] **Phase 5: Latent Clustering** — Multimodal vector embeddings + UMAP / HDBSCAN taxonomy.
-- [ ] **Phase 6: Taste Genome Dossier** — 800 individual Obsidian-compatible Markdown files.
+- [ ] **Phase 6: Design Precept Dossier** — 800 individual Obsidian-compatible Markdown files.
 - [ ] **Phase 7: Generative `design.md` Files** — Operational design system manifestos per cluster.

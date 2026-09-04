@@ -1,4 +1,4 @@
-# DRAFT PLAN 1: Personal Taste Genome & Generative Design System Pipeline
+# DRAFT PLAN 1: Personal Design Precepts & Generative Design Systems
 **Document Version**: 1.0.0-draft  
 **Date**: September 4, 2026  
 **Project Workspace**: `<repo>\Google Arts & Culture\`  
@@ -10,11 +10,11 @@
 ## 1. Executive Summary & Intent Understanding
 
 ### Core Project Intent
-The objective is to transform an existing collection of **801 curated visual favorites** into an **opinionated, amendable, and queryable "Personal Taste Genome"**. 
+The objective is to transform an existing collection of **801 curated visual favorites** into an **opinionated, amendable, and queryable "Personal Design Precepts"**. 
 
 Rather than serving merely as a static archive or catalog, this corpus is designed to function as an active **aesthetic and conceptual compass** that informs real-world decisions in software design, visual architecture, brand identity, physical spaces, and creative technology.
 
-The primary derivative work produced from this genome will be a suite of **`design.md`** files: operational design systems and philosophical manifestos seeded directly from the emergent curatorial clusters discovered within the corpus.
+The primary derivative work produced from these design precepts will be a suite of **`design.md`** files: operational design systems and philosophical manifestos seeded directly from the emergent curatorial clusters discovered within the corpus.
 
 ```mermaid
 flowchart LR
@@ -129,7 +129,7 @@ graph TD
 
 ---
 
-### Phase 3: The Living "Taste Genome" (Obsidian/Logseq Dossier)
+### Phase 3: The Living "Design Precept" Corpus (Obsidian/Logseq Dossier)
 
 Rather than burying insights in a database, the corpus is realized as an amendable, local Markdown knowledge base:
 * **Directory**: `Google Arts & Culture/corpus/`
@@ -193,7 +193,7 @@ The following four prompts are designed to allow external reasoning models, peer
 
 ```text
 PROMPT FOR INTENT UNDERSTANDING CRITIQUE:
-You are an expert design strategist and intellectual auditor reviewing "DRAFT PLAN 1: Personal Taste Genome & Generative Design System Pipeline".
+You are an expert design strategist and intellectual auditor reviewing "DRAFT PLAN 1: Personal Design Precepts & Generative Design Systems".
 
 Evaluate how deeply and accurately this plan captures the user's ultimate intent:
 1. Does the plan successfully bridge the gap between an archive of 801 Google Arts & Culture favorites and an "opinionated and amendable personal art/style/design corpus"?
@@ -209,7 +209,7 @@ Evaluate how deeply and accurately this plan captures the user's ultimate intent
 
 ```text
 PROMPT FOR CREATIVITY & NOVELTY CRITIQUE:
-You are an avant-garde design theorist, museum director, and creative technologist reviewing "DRAFT PLAN 1: Personal Taste Genome".
+You are an avant-garde design theorist, museum director, and creative technologist reviewing "DRAFT PLAN 1: Personal Design Precepts".
 
 Critique the aesthetic and creative ambition of this architecture:
 1. Evaluate the "Advisory Board Personas" (The Formalist, The Industrial & UX Designer, The Cultural Semiotician, The Spatial Materialist, The Colorist & Typographer). Are these lenses sufficiently bold, orthogonal, and insightful? Are there crucial aesthetic perspectives missing (e.g., The Algorithmic Generativist, The Ecological/Vernacularist, The Subversive Post-Modernist)?
@@ -224,7 +224,7 @@ Critique the aesthetic and creative ambition of this architecture:
 
 ```text
 PROMPT FOR PLATFORM & TECH STACK CRITIQUE:
-You are a Principal AI Systems Architect and Data Engineer reviewing the technical stack of "DRAFT PLAN 1: Personal Taste Genome".
+You are a Principal AI Systems Architect and Data Engineer reviewing the technical stack of "DRAFT PLAN 1: Personal Design Precepts".
 
 Critique the technology selections, data topologies, and architectural trade-offs:
 1. Multimodal Vision Pipeline: Evaluate using Gemini 2.5 Flash / 1.5 Flash for the 800-image bulk extraction with Pro reserved for cluster synthesis. Is this the optimal cost/quality/latency boundary?
@@ -239,7 +239,7 @@ Critique the technology selections, data topologies, and architectural trade-off
 
 ```text
 PROMPT FOR IMPLEMENTATION & EXECUTION CRITIQUE:
-You are a Senior ML Engineering Lead and Site Reliability Architect reviewing the execution plan of "DRAFT PLAN 1: Personal Taste Genome".
+You are a Senior ML Engineering Lead and Site Reliability Architect reviewing the execution plan of "DRAFT PLAN 1: Personal Design Precepts".
 
 Rigorously stress-test the execution mechanics and risk mitigations:
 1. Rate Limiting & Resilience: 800 parallel multimodal LLM requests with large image payloads can trigger rate limits (429s), timeouts, or partial failures. Does the plan provide adequate batching, backoff, and stateful checkpointing?
@@ -252,7 +252,7 @@ Rigorously stress-test the execution mechanics and risk mitigations:
 
 ## 7. Artifact Commitment Record
 
-* **Primary Artifact Path**: `Google Arts & Culture\plans\draft_plan_1_personal_taste_genome.md`
-* **Google Drive Sync Path**: `<drive-mirror>\Google Arts & Culture\plans\draft_plan_1_personal_taste_genome.md`
-* **Agent Brain Artifact**: `<appDataDir>\brain\agy-session-2287\draft_plan_1_personal_taste_genome.md`
+* **Primary Artifact Path**: `Google Arts & Culture\plans\draft_plan_1_design_precepts.md`
+* **Google Drive Sync Path**: `<drive-mirror>\Google Arts & Culture\plans\draft_plan_1_design_precepts.md`
+* **Agent Brain Artifact**: `<appDataDir>\brain\agy-session-2287\draft_plan_1_design_precepts.md`
 * **Status**: Committed Draft 1 (Awaiting multi-lens critique review).

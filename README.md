@@ -1,14 +1,14 @@
-# Art to Design: Personal Design Precepts & Generative Design Systems
+# Art to Design: Design Precepts & Playbook Pipeline
 
-> An opinionated, amendable personal corpus of art, style, and visual design synthesized from 801 curated Google Arts & Culture favorites, engineered to seed operational `design.md` design systems.
+> An opinionated, amendable personal Catalogue of art, style, and visual design synthesized from 801 curated Google Arts & Culture favorites, engineered to seed operational `design.md` design playbooks and standards.
 
 ---
 
 ## Overview
 
-**Art to Design** bridges historical art curation and contemporary visual/system design. By combining dense curatorial metadata, Wikimedia/Wikidata open semantic data, and high-resolution visual assets with multimodal AI perception, this project extracts the latent principles governing a personal visual taste profile.
+**Art to Design** bridges historical art curation and contemporary product/systems design. By combining dense curatorial metadata, Wikimedia/Wikidata semantic links, and high-resolution visual assets with multimodal AI perception, this project extracts the latent principles governing a personal visual taste profile.
 
-The ultimate deliverable is a suite of **seeded `design.md` manifestos** (covering color design tokens, spatial typography, component affordances, layout geometry, and visual philosophies) rooted directly in ancestral art lineages.
+The ultimate deliverable is the **Design Playbook**: a collection of operational **`design.md`** files (color tokens, spatial typography, component standards, layout rules, and design theories) rooted directly in ancestral art lineages.
 
 ---
 
@@ -19,7 +19,7 @@ art-to-design/
 ├── README.md                                             # Project overview & roadmap
 └── Google Arts & Culture/
     ├── plans/
-    │   └── draft_plan_1_design_precepts.md        # Committed Draft Plan 1 Packet & Critique Prompts
+    │   └── draft_plan_1_design_precepts.md              # Committed Draft Plan 1 & Critique Prompts
     ├── favorites.json                                    # Raw favorites baseline (801 items)
     ├── favorites.tsv                                     # Raw favorites TSV
     ├── favorites_enriched.json                           # Enriched dataset (47 columns, derived dimensions, Wikidata)
@@ -38,14 +38,14 @@ art-to-design/
 
 ---
 
-## The Advisory Council Framework ("The Board Members")
+## The 5 Evaluative Angles
 
-The next phase of multimodal analysis evaluates the corpus through 5 distinct intellectual lenses:
-1. **The Formalist**: Compositional geometry, technique, visual rhythm, and art-historical lineage.
-2. **The Industrial & UX Designer**: Physical affordances, surface tension, spatial ergonomics, and functional aesthetics.
-3. **The Cultural Semiotician**: Cultural signifiers, symbolic encoding, narrative subtext, and emotional valence.
-4. **The Spatial Materialist**: Light/void balance, negative space, tactile materiality, and spatial perspective.
-5. **The Colorist & Typographer**: Chromatic temperature, tonal contrast profiles, and typographic/calligraphic weight.
+The multimodal analysis examines each work through 5 practical design angles:
+1. **Composition & Lineage**: Underlying geometry, visual balance, rhythm, and historical lineage.
+2. **Utility & Ergonomics**: Functional aesthetics, focal hierarchy, and interface/tool affordances.
+3. **Visual Language & Semiotics**: Visual signifiers, symbolic encoding, and narrative tension.
+4. **Light, Space & Materiality**: Light/shadow dynamics, negative space handling, and surface textures.
+5. **Color & Typography**: Palette balance, contrast profiles, and typographic/calligraphic weight.
 
 ---
 
@@ -54,8 +54,8 @@ The next phase of multimodal analysis evaluates the corpus through 5 distinct in
 - [x] **Phase 0: Extraction & Purification** — 801 cultural assets filtered and chronologically indexed.
 - [x] **Phase 1: Metadata Enrichment** — 25+ curatorial fields, Wikidata QIDs, metric physical dimensions, and aspect ratios.
 - [x] **Phase 2: Visual Asset Caching** — 800 high-res image files collected and synced.
-- [x] **Phase 3: Architecture Planning** — Draft Plan 1 committed with multi-lens critique prompts.
-- [ ] **Phase 4: Multimodal Analysis** — Batch structured JSON extraction across all 800 images.
+- [x] **Phase 3: Architecture Planning** — Draft Plan 1 committed with clean vocabulary and critique prompts.
+- [ ] **Phase 4: Multimodal Analysis** — Batch structured JSON extraction across the 5 Angles.
 - [ ] **Phase 5: Latent Clustering** — Multimodal vector embeddings + UMAP / HDBSCAN taxonomy.
-- [ ] **Phase 6: Design Precept Dossier** — 800 individual Obsidian-compatible Markdown files.
-- [ ] **Phase 7: Generative `design.md` Files** — Operational design system manifestos per cluster.
+- [ ] **Phase 6: Catalogue Notes** — 800 individual Obsidian-compatible Markdown files.
+- [ ] **Phase 7: The Design Playbook** — Seeded `design.md` standards per cluster.

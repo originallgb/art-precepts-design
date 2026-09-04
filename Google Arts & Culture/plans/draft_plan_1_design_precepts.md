@@ -1,76 +1,77 @@
-# DRAFT PLAN 1: Personal Design Precepts & Generative Design Systems
-**Document Version**: 1.0.0-draft  
+# DRAFT PLAN 1: Design Precepts & Playbook Pipeline
+**Document Version**: 1.0.0-final-draft  
 **Date**: September 4, 2026  
 **Project Workspace**: `<repo>\Google Arts & Culture\`  
+**GitHub Repository**: [originallgb/art-to-design](https://github.com/originallgb/art-to-design)  
 **Cloud Mirror**: `<drive-mirror>\Google Arts & Culture\`  
 **Dataset Reference**: 801 Google Arts & Culture Favorites (Spreadsheet ID: `1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU`)
 
 ---
 
-## 1. Executive Summary & Intent Understanding
+## 1. Project Purpose & Intent
 
-### Core Project Intent
-The objective is to transform an existing collection of **801 curated visual favorites** into an **opinionated, amendable, and queryable "Personal Design Precepts"**. 
+### Core Intent
+The objective is to transform a collection of **801 curated visual favorites** into an **opinionated, amendable Catalogue of Design Precepts & Heuristics**.
 
-Rather than serving merely as a static archive or catalog, this corpus is designed to function as an active **aesthetic and conceptual compass** that informs real-world decisions in software design, visual architecture, brand identity, physical spaces, and creative technology.
+Rather than serving as a passive archive, this Catalogue functions as an active visual compass to inform practical decisions in UI/UX development, brand design, spatial architecture, and software systems.
 
-The primary derivative work produced from these design precepts will be a suite of **`design.md`** files: operational design systems and philosophical manifestos seeded directly from the emergent curatorial clusters discovered within the corpus.
+The end deliverable is the **Design Playbook**: a collection of operational **`design.md`** files containing concrete **Standards & Theories** seeded directly from the visual clusters discovered in the Catalogue.
 
 ```mermaid
 flowchart LR
-    A[801 Raw Favorites & High-Res Images] --> B[Multimodal Vision & Curatorial Council]
-    B --> C[Living Markdown Dossier / Corpus]
-    B --> D[Multimodal Vector & Semantic Graph]
-    D --> E[Emergent Latent Clusters]
-    E --> F[Seeded design.md Manifestos]
-    F --> G[Real-World Decision Making & Artifacts]
+    A[The Catalogue<br/>801 Works + Images] --> B[Multimodal Analysis<br/>The 5 Angles]
+    B --> C[Catalogue Notes<br/>800 Markdown Entries]
+    B --> D[Multimodal Vectors & Graph]
+    D --> E[Visual Clusters]
+    E --> F[The Design Playbook<br/>Seeded design.md Standards]
+    F --> G[Production UI & Design Decisions]
 ```
 
 ---
 
 ## 2. Current Baseline State & Verified Artifacts
 
-Before initiating this phase, the following foundation has been completely established, verified, and synchronized:
+The foundational layer is complete, verified, and synchronized across local storage, Google Drive, and GitHub:
 
-1. **Source Data & Asset Purification**:
-   - 832 items extracted from the MHTML snapshot; filtered down to **801 pure cultural assets** (excluding Street View panoramas, interactive 3D experiments, and removed items).
-   - Chronological indexing strictly preserved: `index = 1` represents the oldest favorite, up to `index = 801` as the newest favorite.
-2. **Deep Curatorial Metadata Enrichment (25+ Fields)**:
-   - Primary curatorial metadata parsed from Google Arts & Culture internal payloads (`window.INIT_data`).
+1. **The Catalogue Base**:
+   - 832 items extracted from the MHTML snapshot; filtered to **801 pure cultural assets** (no Street View tours, 3D interactive experiments, or removed items).
+   - Chronological indexing preserved: `index = 1` (oldest favorite) through `index = 801` (newest favorite).
+2. **Curatorial Metadata & Enrichment (25+ Fields)**:
+   - Primary curatorial fields parsed from Google Arts & Culture payload arrays (`window.INIT_data`).
    - Open data linked from Wikidata (`wdt:P4701`) and Wikimedia Commons (76 matched QIDs, high-res Commons URLs, Wikipedia links).
-   - Physical dimensions parsed and normalized to metric centimeters ($W \times H \times D$) with estimated scan DPI.
-   - Exact floating-point aspect ratios and standard photographic/art ratio classifications (`"3:1"`, `"4:3"`, `"16:9"`, etc.) alongside categorical orientations (`Panoramic`, `Landscape`, `Square`, `Portrait`).
+   - Physical dimensions normalized to metric centimeters ($W \times H \times D$) with estimated scan DPI.
+   - Numeric aspect ratios and standard format labels (`3:1`, `4:3`, `16:9`, `1:1`) with categorical orientations (`Panoramic`, `Landscape`, `Square`, `Portrait`).
 3. **High-Resolution Visual Assets**:
-   - **800 image files** downloaded at max web preview resolution (`=s1200`) and stored locally in `Google Arts & Culture/images/`.
-   - Master scan pixel resolutions preserved from `data_ia` (e.g. $9847 \times 3238\text{ px}$ for gigapixel canvases).
-   - Mirrored to Google Drive for Desktop (`<drive-mirror>\Google Arts & Culture\images\`) and Google Drive cloud folder (`REDACTED_DRIVE_FOLDER_ID`).
+   - **800 image files** downloaded at max web preview resolution (`=s1200`) and stored in `Google Arts & Culture/images/`.
+   - Master scan resolutions tracked from `data_ia` (up to $9847 \times 3238\text{ px}$ for gigapixel scans).
+   - Mirrored to Google Drive (`<drive-mirror>\Google Arts & Culture\images\`) and GitHub.
 4. **Master Google Sheet**:
    - **[Google Arts & Culture - Favorites](https://docs.google.com/spreadsheets/d/1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU/edit)**
-   - 802 rows $\times$ 47 columns ($37,694$ cells) styled with navy blue header, frozen row, and live `=IMAGE(...)` preview gallery.
+   - 802 rows × 47 columns with navy header, frozen row, and live `=IMAGE(...)` visual gallery.
 
 ---
 
-## 3. The Advisory Council Framework ("The Board Members")
+## 3. The 5 Evaluative Angles
 
-To ensure the multimodal vision analysis escapes superficial AI art criticism (clichés like *"a stunning study in contrasts"* or *"captivating brushwork"*), all analytical passes are filtered through **5 complementary intellectual and aesthetic personas**:
+To extract deep, actionable design heuristics and avoid superficial AI descriptions, multimodal vision analysis evaluates each work through **5 distinct Angles**:
 
-| Board Member | Intellectual Discipline | Analytical Focus & Questions |
+| Angle | Analytical Focus | Core Questions Asked of Each Piece |
 | :--- | :--- | :--- |
-| **1. The Formalist** | Master Curator & Art Historian | *Lineage, composition, technique, rhythm, structural balance, and art-historical provenance.* Where does this piece sit in visual evolution? What compositional geometry anchors the frame? |
-| **2. The Industrial & UX Designer** | Principal Product Designer | *Affordances, functional aesthetics, spatial ergonomics, surface tension, and visual hierarchy.* If this artwork were an operating system or physical tool, how would it behave? |
-| **3. The Cultural Semiotician** | Visual Anthropologist | *Symbolic encoding, emotional valence, cultural myths, and narrative subtext.* What is this image communicating beyond its literal depiction? What latent tensions exist? |
-| **4. The Spatial Materialist** | Architectural Theorist | *Light, shadow, negative space, tactile materiality, surface texture, and physical depth.* How does this piece handle void versus mass? How does light construct space? |
-| **5. The Colorist & Typographer** | Visual Systems Analyst | *Chromatic harmonies, tonal contrast profiles, luminance gradients, and typographic weight.* What is the exact color balance and psychological temperature of the palette? |
+| **1. Composition & Lineage** | Structural geometry & lineage | *What is the underlying compositional grid? How does visual weight flow across the frame? Where does this structure sit in design history?* |
+| **2. Utility & Ergonomics** | Functional aesthetics & affordances | *If this piece were an interface, tool, or physical object, what are its affordances? How does it direct viewer focus and hierarchy?* |
+| **3. Visual Language & Semiotics** | Symbolism & narrative tension | *What visual signs and symbols carry meaning? What emotional valence or narrative friction is present beyond the literal subject?* |
+| **4. Light, Space & Materiality** | Spatial depth & surface texture | *How do light and shadow create space? How is negative space (void vs. mass) handled? What is the tactile quality of the surface?* |
+| **5. Color & Typography** | Palette balance & letterforms | *What are the precise hex values, contrast ratios, and color temperatures? If text or calligraphic elements exist, what is their weight and rhythm?* |
 
 ---
 
-## 4. End-to-End System Architecture
+## 4. Pipeline Architecture
 
-### Phase 1: Multimodal Vision & Curatorial Extraction
-* **Execution Engine**: Asynchronous batch worker using `asyncio` and `httpx` with exponential backoff and rate-limiting.
-* **Model Selection**: Gemini 2.5 Flash / 1.5 Flash for bulk 800-image extraction (cost-effective, high visual acuity), with Pro invoked for synthesis and cluster manifestos.
-* **Caching & Idempotency**: Local SQLite database (`scratch/multimodal_analysis.db`) to guarantee zero duplicate API calls.
-* **Strict JSON Schema**:
+### Phase 1: Multimodal Vision & Analysis
+* **Engine**: Asynchronous batch worker using `asyncio` and `httpx` with exponential backoff and rate limiting.
+* **Model Tiering**: Gemini 2.5 Flash / 1.5 Flash for bulk 800-image extraction; Pro invoked for cluster synthesis and Playbook standards.
+* **Storage**: Local SQLite cache (`scratch/multimodal_analysis.db`) to guarantee idempotency.
+* **Structured JSON Schema**:
   ```json
   {
     "visual_composition": {
@@ -98,161 +99,118 @@ To ensure the multimodal vision analysis escapes superficial AI art criticism (c
     "design_vernacular": {
       "historical_lineage": ["string"],
       "structural_motifs": ["string"],
-      "typographic_calligraphic_cues": "string"
+      "typographic_cues": "string"
     },
-    "council_critique": "Three rigorous sentences synthesizing why this piece matters to a designer, strictly avoiding banned clichés.",
-    "design_affordances": ["3-5 concrete design primitives or UI/spatial ideas"]
+    "precept_critique": "Three concise, rigorous sentences identifying why this piece matters to a designer, banning generic art-critical filler.",
+    "design_heuristics": ["3-5 actionable design rules or spatial/UI patterns"]
   }
   ```
 
 ---
 
-### Phase 2: Emergent Taxonomy, Clustering & Latent Graph
-
-To uncover non-obvious, cross-era aesthetic connections (e.g. a 14th-century Japanese woodblock echoing 1960s Braun industrial packaging), we utilize a multi-modal embedding and graph pipeline:
-
-```mermaid
-graph TD
-    TextMeta[Curatorial Text & Council Critique] --> TextEmbed[Text Embeddings<br/>gemini-embedding-001]
-    Images[800 High-Res Images] --> VisEmbed[Visual Embeddings<br/>SigLIP / CLIP]
-    TextEmbed & VisEmbed --> Unified[Unified Multimodal Vector Space]
-    Unified --> UMAP[UMAP Dimensionality Reduction]
-    UMAP --> HDBSCAN[HDBSCAN Density-Based Clustering]
-    HDBSCAN --> Clusters[Organic Aesthetic Clusters]
-    Clusters --> CouncilSynthesis[Advisory Council Synthesis]
-    CouncilSynthesis --> Manifestos[Cluster Names & Manifestos]
-```
-
-* **Serendipity & Bridge Artworks**:
-  - Outliers in HDBSCAN are specifically examined as **"aesthetic bridges"** that connect seemingly disparate movements.
-  - Generates a persistent graph (`taste_knowledge_graph.json`) where nodes are artworks and edges represent shared chromatic moods, spatial handling, or semiotic resonances.
+### Phase 2: Latent Clustering & Unexpected Relations
+* **Unified Embeddings**: Concatenates textual curatorial vectors with visual embeddings (CLIP/SigLIP).
+* **Dimensionality Reduction & Clustering**: Runs UMAP followed by HDBSCAN to discover organic clusters unbounded by medium or time period (e.g. connecting a medieval manuscript with a modernist Swiss poster based on shared high-contrast grid layouts and primary palettes).
+* **Bridge Works**: Outliers in HDBSCAN are isolated as "aesthetic bridges" linking different styles.
 
 ---
 
-### Phase 3: The Living "Design Precept" Corpus (Obsidian/Logseq Dossier)
-
-Rather than burying insights in a database, the corpus is realized as an amendable, local Markdown knowledge base:
-* **Directory**: `Google Arts & Culture/corpus/`
-* **File Naming**: `0801_a-true-and-exact-draught-of-the-tower-liberties_qwFtfThyyZrDcw.md`
-* **File Anatomy**:
-  - **YAML Frontmatter**: Machine-readable metadata (index, title, creator, date, cluster, aspect ratio, palette, tags).
-  - **Embedded Visual Asset**: `![[../images/0801_...jpg]]`
-  - **Curatorial Council Critique**: The 5-member board analysis.
-  - **Design Affordances**: Extracted UI/UX/architectural primitives.
-  - **Backlinks & Aesthetic Neighbors**: Links to visually or conceptually related artworks in the corpus.
-  - **User Notes Section**: Reserved space for personal annotations, project references, and override tags.
+### Phase 3: The Living Catalogue (Obsidian/Logseq Notes)
+* **Directory**: `Google Arts & Culture/catalogue/`
+* **File Format**: `0801_a-true-and-exact-draught-of-the-tower-liberties_qwFtfThyyZrDcw.md`
+* **File Structure**:
+  - YAML frontmatter (ID, title, creator, date, cluster, aspect ratio, palette, tags).
+  - Embedded local preview image (`![[../images/0801_...jpg]]`).
+  - Analysis across the 5 Angles.
+  - Actionable design heuristics extracted from the piece.
+  - Backlinks to visually related items in the Catalogue.
+  - Dedicated User Notes section for manual edits and project tagging.
 
 ---
 
-### Phase 4: Derivative Output — Seeded `design.md` Manifestos
+### Phase 4: The Design Playbook (`design.md` Standards)
+For each discovered cluster, an operational **`design.md`** file is generated inside `Google Arts & Culture/playbook/`:
 
-For each discovered cluster (e.g. *Cluster 01: "Neo-Sacred Minimalism"*, *Cluster 02: "Industrial Brutalism & Technical Lineage"*), an operational `design.md` file is generated:
-
-#### Structure of a Seeded `design.md`:
-1. **Title & Aesthetic Nomenclature**: Evocative, precise design ethos.
-2. **Philosophy**: Core philosophical manifesto justifying this visual language.
-3. **Visual Principles**: 3–5 non-negotiable design heuristics (e.g., *"Honor negative space as a primary architectural material; reject ornamental framing"*).
-4. **Color Design Tokens**: Exact hex values mapped to semantic roles (`bg-primary`, `surface-elevated`, `text-high-contrast`, `accent-vital`).
-5. **Typography & Hierarchy Guidelines**: Contrast ratios, serif/sans relationships, scale ratios, and letterform characteristics.
-6. **Layout & Spatial Rules**: Grid strictness, padding rhythms, border radii, depth/elevation philosophy.
-7. **Component Primitives & Patterns**: Button styles, card affordances, dividers, navigation behaviors.
-8. **Do's and Don'ts Table**: Explicit anti-patterns versus desired executions.
-9. **Ancestral Lineage**: Deep links to the 5–7 artworks from your corpus that anchor this design system.
+#### Anatomy of a `design.md` File:
+1. **Title & Aesthetic Thesis**: Clear, descriptive name of the style cluster.
+2. **Design Theories**: Core philosophical rationale explaining why this visual system works.
+3. **Core Precepts**: 3–5 non-negotiable rules for layout, contrast, and hierarchy.
+4. **Color Tokens**: Palette hex codes mapped to functional UI tokens (`bg-primary`, `surface-elevated`, `text-high-contrast`, `accent`).
+5. **Typography & Hierarchy**: Scale ratios, serif/sans pairings, and weight rules.
+6. **Component Standards**: Specifications for buttons, cards, dividers, borders, and elevation.
+7. **Do's & Don'ts**: Concrete guardrails and anti-patterns.
+8. **Catalogue Ancestry**: Links to the 5–7 anchor artworks from your collection that seed this standard.
 
 ---
 
-## 5. Implementation Roadmap
-
-```mermaid
-gantt
-    title Implementation Roadmap
-    dateFormat  YYYY-MM-DD
-    section Phase 1: Analysis
-    Multimodal Batch Extraction (800 Images)   :2026-09-05, 1d
-    Schema Verification & Database Cache       :2026-09-05, 1d
-    section Phase 2: Corpus
-    Generate 800 Markdown Dossiers             :2026-09-06, 1d
-    Google Sheet & Drive Gallery Update        :2026-09-06, 1d
-    section Phase 3: Taxonomy
-    Multimodal Embedding & UMAP/HDBSCAN        :2026-09-07, 1d
-    Latent Graph & Bridge Artworks Mapping     :2026-09-07, 1d
-    section Phase 4: Design Systems
-    Council Synthesis of Clusters              :2026-09-08, 1d
-    Generate Seeded design.md Manifestos       :2026-09-08, 1d
-```
+## 5. Multi-Lens Critique Prompts Packet
 
 ---
 
-## 6. Multi-Lens Critique Prompts Packet
-
-The following four prompts are designed to allow external reasoning models, peer agents, or human reviewers to rigorously stress-test this plan across its four critical dimensions:
-
----
-
-### Critique Prompt 1: Intent Understanding & Intellectual Alignment
+### Critique Prompt 1: Intent Understanding & Practical Alignment
 
 ```text
 PROMPT FOR INTENT UNDERSTANDING CRITIQUE:
-You are an expert design strategist and intellectual auditor reviewing "DRAFT PLAN 1: Personal Design Precepts & Generative Design Systems".
+You are an expert design strategist reviewing "DRAFT PLAN 1: Design Precepts & Playbook Pipeline".
 
-Evaluate how deeply and accurately this plan captures the user's ultimate intent:
-1. Does the plan successfully bridge the gap between an archive of 801 Google Arts & Culture favorites and an "opinionated and amendable personal art/style/design corpus"?
-2. Does the plan treat the collection as a living decision-support engine rather than a passive gallery? Where might it risk becoming mere cataloging?
-3. Evaluate the derivative deliverable (the seeded `design.md` files). Will the proposed structure actually empower the user to make tangible software, visual, and architectural design decisions?
-4. What implicit desires or higher-order goals of the user might this plan have overlooked or under-emphasized?
-5. Provide 3 concrete recommendations to strengthen the conceptual and practical alignment with the user's taste.
+Evaluate how accurately this plan captures the user's intent:
+1. Does the plan successfully turn an archive of 801 Google Arts & Culture favorites into an opinionated, amendable personal Catalogue of design rules?
+2. Does the plan treat the collection as a decision-making engine rather than a passive museum archive?
+3. Evaluate the derivative deliverable (the seeded `design.md` files). Will the proposed playbook structure give the user practical standards for building real products and interfaces?
+4. What practical needs of a working designer might this plan have overlooked?
+5. Provide 3 concrete suggestions to sharpen the utility of the output.
 ```
 
 ---
 
-### Critique Prompt 2: Creativity, Aesthetic Ambition & Novelty
+### Critique Prompt 2: Creativity & Analytical Depth
 
 ```text
-PROMPT FOR CREATIVITY & NOVELTY CRITIQUE:
-You are an avant-garde design theorist, museum director, and creative technologist reviewing "DRAFT PLAN 1: Personal Design Precepts".
+PROMPT FOR CREATIVITY CRITIQUE:
+You are a senior design technologist reviewing "DRAFT PLAN 1: Design Precepts & Playbook Pipeline".
 
-Critique the aesthetic and creative ambition of this architecture:
-1. Evaluate the "Advisory Board Personas" (The Formalist, The Industrial & UX Designer, The Cultural Semiotician, The Spatial Materialist, The Colorist & Typographer). Are these lenses sufficiently bold, orthogonal, and insightful? Are there crucial aesthetic perspectives missing (e.g., The Algorithmic Generativist, The Ecological/Vernacularist, The Subversive Post-Modernist)?
-2. How effective is the plan at escaping the "generic AI aesthetic trap" (superficial praise, generic color summaries, predictable clichés)?
-3. Critically evaluate the strategy for discovering "unexpected relations" across eras and mediums. Does the proposed embedding + UMAP + graph approach foster genuine serendipity, or will it cluster predictably by superficial visual traits?
-4. How can the generation of the seeded `design.md` manifestos be made more provocative, distinctive, and intellectually daring?
+Critique the depth and analytical ambition of this architecture:
+1. Evaluate the "5 Angles" (Composition & Lineage, Utility & Ergonomics, Visual Language, Light & Space, Color & Typography). Are these angles sharp and orthogonal?
+2. How effectively does the plan prevent generic AI observations (banning clichés, enforcing technical rigor)?
+3. Critically evaluate the strategy for uncovering unexpected relations across eras. Will the embedding + UMAP approach discover genuine serendipity, or cluster trivially by color and medium?
+4. How can the seeded `design.md` playbooks be made more distinctive and opinionated?
 ```
 
 ---
 
-### Critique Prompt 3: Platform, Architecture & Tech Stack Evaluation
+### Critique Prompt 3: Platform, Architecture & Tech Stack
 
 ```text
-PROMPT FOR PLATFORM & TECH STACK CRITIQUE:
-You are a Principal AI Systems Architect and Data Engineer reviewing the technical stack of "DRAFT PLAN 1: Personal Design Precepts".
+PROMPT FOR TECH STACK CRITIQUE:
+You are a Principal Systems Architect reviewing "DRAFT PLAN 1: Design Precepts & Playbook Pipeline".
 
-Critique the technology selections, data topologies, and architectural trade-offs:
-1. Multimodal Vision Pipeline: Evaluate using Gemini 2.5 Flash / 1.5 Flash for the 800-image bulk extraction with Pro reserved for cluster synthesis. Is this the optimal cost/quality/latency boundary?
-2. Local Markdown Dossier (Obsidian/Logseq format) vs. Database-Centric Storage: Is maintaining 800 individual markdown files with YAML frontmatter alongside SQLite and Parquet embeddings resilient, performant, and maintainable?
-3. Unsupervised Clustering Methodology: Evaluate UMAP + HDBSCAN on concatenated textual and visual embeddings. What pitfalls exist (e.g., high-dimensional distortion, hyperparameter sensitivity, cluster fragmentation)? Should alternative semantic graph or topic modeling approaches (e.g., BERTopic, Leiden community detection) be considered?
-4. Cloud & Desktop Sync Architecture: How well does the dual-write setup (Local Workspace + Google Drive for Desktop + Native Google Sheet) handle synchronization, latency, and consistency?
+Critique the technical choices and data flow:
+1. Multimodal Vision: Is using Gemini 2.5 Flash / 1.5 Flash for 800-image bulk extraction with Pro for cluster synthesis the optimal cost/quality balance?
+2. Catalogue Storage: Is maintaining 800 individual markdown files alongside SQLite caching and TSV/JSON tables resilient and easy to maintain?
+3. Clustering Methodology: What are the edge cases of running UMAP + HDBSCAN on concatenated textual and visual embeddings?
+4. Data Flow: How well does the local workspace + Google Drive + Google Sheets synchronization hold up over time?
 ```
 
 ---
 
-### Critique Prompt 4: Implementation Rigor, Scalability & Guardrails
+### Critique Prompt 4: Implementation Rigor & Governance
 
 ```text
-PROMPT FOR IMPLEMENTATION & EXECUTION CRITIQUE:
-You are a Senior ML Engineering Lead and Site Reliability Architect reviewing the execution plan of "DRAFT PLAN 1: Personal Design Precepts".
+PROMPT FOR IMPLEMENTATION CRITIQUE:
+You are a Senior ML Engineering Lead reviewing "DRAFT PLAN 1: Design Precepts & Playbook Pipeline".
 
-Rigorously stress-test the execution mechanics and risk mitigations:
-1. Rate Limiting & Resilience: 800 parallel multimodal LLM requests with large image payloads can trigger rate limits (429s), timeouts, or partial failures. Does the plan provide adequate batching, backoff, and stateful checkpointing?
-2. Schema Adherence: LLMs occasionally hallucinate keys or return malformed JSON when processing complex multimodal prompts. What strict validation and automatic retry mechanisms should be enforced?
-3. Human-in-the-Loop & Amendability: The user specifically required an "amendable" corpus. How does the system handle manual user edits in the Markdown files or Google Sheet without losing changes during subsequent automated re-runs?
-4. Measurable Success Criteria: What automated and qualitative metrics should determine whether a generated `design.md` is genuinely operational and true to the user's taste?
+Stress-test the execution mechanics:
+1. Rate Limits & Reliability: Does the async batch worker provide sufficient retry logic, backoff, and checkpointing for 800 images?
+2. Schema Adherence: What validation ensures 100% compliance with the structured JSON schema without silent failures?
+3. User Amendability: When the user manually edits a Catalogue markdown file or adjusts a tag, how does the system preserve those manual overrides during re-runs?
+4. Playbook Validation: What automated checks verify that a generated `design.md` contains valid hex tokens, accessible contrast ratios, and working file references?
 ```
 
 ---
 
-## 7. Artifact Commitment Record
+## 6. Artifact Commitment Record
 
-* **Primary Artifact Path**: `Google Arts & Culture\plans\draft_plan_1_design_precepts.md`
-* **Google Drive Sync Path**: `<drive-mirror>\Google Arts & Culture\plans\draft_plan_1_design_precepts.md`
-* **Agent Brain Artifact**: `<appDataDir>\brain\agy-session-2287\draft_plan_1_design_precepts.md`
-* **Status**: Committed Draft 1 (Awaiting multi-lens critique review).
+* **Primary Plan Path**: `Google Arts & Culture/plans/draft_plan_1_design_precepts.md`
+* **Google Drive Mirror**: `<drive-mirror>/Google Arts & Culture/plans/draft_plan_1_design_precepts.md`
+* **GitHub**: [originallgb/art-to-design](https://github.com/originallgb/art-to-design)
+* **Status**: Final Draft 1 (Ready for prototype execution).

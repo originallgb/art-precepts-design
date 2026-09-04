@@ -1,0 +1,667 @@
+{
+  "version": "1.0.0",
+  "total_artworks": 801,
+  "cluster_count": 10,
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "name": "Cartographic & Information Architecture",
+      "slug": "cartographic-information-architecture",
+      "color_hex": "#2563EB",
+      "member_count": 68,
+      "percentage": 8.49,
+      "aesthetic_thesis": "Dense visual information systems utilizing hieratic scaling, multi-scalar data layers, and ornamental boundary framing to organize complex relational data.",
+      "core_precept": "Layer micro-detail within rigorous macro-borders to prevent cognitive overload in data-dense interfaces.",
+      "anchor_works": [
+        {
+          "index": 771,
+          "title": "Buddhist Map of the World: ‘Outline Map of All Countries of the Universe",
+          "creator": "Zuda Rokashi (Priest Hotan)",
+          "date": "1710",
+          "centroid_dist": 3.7382,
+          "asset_id": "pQHZVGGNlR3gLg",
+          "local_image": "images/0771_buddhist-map-of-the-world-outline-map-of-all-countries-of-th_pQHZVGGNlR3gLg.jpg"
+        },
+        {
+          "index": 756,
+          "title": "Map Ducatus Carnioliae Tabula Chorographica",
+          "creator": "Janez Dizma Florjančič",
+          "date": "1744",
+          "centroid_dist": 3.7409,
+          "asset_id": "_QGtaiXNxSYMzw",
+          "local_image": "images/0756_map-ducatus-carnioliae-tabula-chorographica__QGtaiXNxSYMzw.jpg"
+        },
+        {
+          "index": 801,
+          "title": "A True and Exact Draught of the Tower Liberties",
+          "creator": "George Vertue, after William Hayward and John Gascoyne",
+          "date": "1742",
+          "centroid_dist": 3.8618,
+          "asset_id": "qwFtfThyyZrDcw",
+          "local_image": "images/0801_a-true-and-exact-draught-of-the-tower-liberties_qwFtfThyyZrDcw.jpg"
+        },
+        {
+          "index": 742,
+          "title": "America with those Known Parts in that Unkowne Worlde Both People and Manner of Buildings Discribed and Inlarged by I.S. Ano. 1626",
+          "creator": "Speed, John",
+          "date": "1676/1676",
+          "centroid_dist": 3.9744,
+          "asset_id": "rwHtELb-_ddPsg",
+          "local_image": "images/0742_america-with-those-known-parts-in-that-unkowne-worlde-both-p_rwHtELb-_ddPsg.jpg"
+        },
+        {
+          "index": 779,
+          "title": "Northern India – Mughal Empire",
+          "creator": "William Baffin",
+          "date": "1625",
+          "centroid_dist": 4.0471,
+          "asset_id": "UwFtHwLnHQnzdQ",
+          "local_image": "images/0779_northern-india-mughal-empire_UwFtHwLnHQnzdQ.jpg"
+        },
+        {
+          "index": 743,
+          "title": "Recens Edita Totius Novi Belgii in America Septentionali siti delineatio cura sumtibus Matthaei Seutteri, Chalcographi Augustani.",
+          "creator": "Seutter, Matthias",
+          "date": "1730/1730",
+          "centroid_dist": 4.0947,
+          "asset_id": "fgF957pyRtGbrw",
+          "local_image": "images/0743_recens-edita-totius-novi-belgii-in-america-septentionali-sit_fgF957pyRtGbrw.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "name": "Bauhaus Functionalism & Standardized Modular Systems",
+      "slug": "bauhaus-functionalism-modular-systems",
+      "color_hex": "#D97706",
+      "member_count": 51,
+      "percentage": 6.37,
+      "aesthetic_thesis": "Orthogonal technical drafting, standardized unit ranges, and honest functional joinery where every line corresponds to physical affordance and spatial efficiency.",
+      "core_precept": "Form is an ergonomic consequence of standard module constraints and honest material dimensions.",
+      "anchor_works": [
+        {
+          "index": 407,
+          "title": "WORKTABLE",
+          "creator": "Franz Ehrlich",
+          "date": "1957-10-08",
+          "centroid_dist": 2.8915,
+          "asset_id": "QgGF20uJIwXlLg",
+          "local_image": "images/0407_worktable_QgGF20uJIwXlLg.jpg"
+        },
+        {
+          "index": 701,
+          "title": "Worktable, bookshelf (from Alfred Arndt's and Lilly Reich's Interior Works class)",
+          "creator": "Eduard Ludwig",
+          "date": "1931-02-11",
+          "centroid_dist": 2.9222,
+          "asset_id": "_QG0EpcUAGyb1A",
+          "local_image": "images/0701_worktable-bookshelf-from-alfred-arndt-s-and-lilly-reich-s-in__QG0EpcUAGyb1A.jpg"
+        },
+        {
+          "index": 702,
+          "title": "Sideboard and table (Design drawing from Alfred Arndt's and Lilly Reich's Interior Works class)",
+          "creator": "Eduard Ludwig",
+          "date": "1931-02-11",
+          "centroid_dist": 3.3337,
+          "asset_id": "5gEeHR2mzvUDvA",
+          "local_image": "images/0702_sideboard-and-table-design-drawing-from-alfred-arndt-s-and-l_5gEeHR2mzvUDvA.jpg"
+        },
+        {
+          "index": 666,
+          "title": "OPEN SHELF AS A ROOM DIVIDER (Baumann House, Berlin)",
+          "creator": "Franz Ehrlich",
+          "date": "1975-06-17",
+          "centroid_dist": 3.4358,
+          "asset_id": "2AH9669hQtNVuw",
+          "local_image": "images/0666_open-shelf-as-a-room-divider-baumann-house-berlin_2AH9669hQtNVuw.jpg"
+        },
+        {
+          "index": 690,
+          "title": "MODEL FURNITURE ASSEMBLY 1 DESIGN RANGE B (Standardized unit furniture \"Hellerau Series 026\")",
+          "creator": "Franz Ehrlich",
+          "date": "1966",
+          "centroid_dist": 3.5696,
+          "asset_id": "GAEPXkwkhbusZQ",
+          "local_image": "images/0690_model-furniture-assembly-1-design-range-b-standardized-unit-_GAEPXkwkhbusZQ.jpg"
+        },
+        {
+          "index": 687,
+          "title": "Untitled (Design for a shelf)",
+          "creator": "Franz Ehrlich",
+          "date": null,
+          "centroid_dist": 3.6852,
+          "asset_id": "TQGJE32n3kCzrg",
+          "local_image": "images/0687_untitled-design-for-a-shelf_TQGJE32n3kCzrg.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "name": "Atmospheric Maritime & Industrial Panoramas",
+      "slug": "atmospheric-maritime-industrial-panoramas",
+      "color_hex": "#0D9488",
+      "member_count": 60,
+      "percentage": 7.49,
+      "aesthetic_thesis": "Expansive horizontal vistas and deep atmospheric perspective balanced by sharp vertical mechanical interventions (masts, cranes, steam conduits).",
+      "core_precept": "Anchor vast low-contrast negative space with high-contrast structural silhouettes on the horizon.",
+      "anchor_works": [
+        {
+          "index": 16,
+          "title": "Entrées des jetées du Havre par gros temps",
+          "creator": "Eugène Boudin",
+          "date": "1895",
+          "centroid_dist": 3.2811,
+          "asset_id": "_gHaxnA-GOm0zg",
+          "local_image": "images/0016_entr-es-des-jet-es-du-havre-par-gros-temps__gHaxnA-GOm0zg.jpg"
+        },
+        {
+          "index": 163,
+          "title": "Men of the Docks",
+          "creator": "George Bellows",
+          "date": "1912",
+          "centroid_dist": 3.3684,
+          "asset_id": "3AELCGI0WHIKsw",
+          "local_image": "images/0163_men-of-the-docks_3AELCGI0WHIKsw.jpg"
+        },
+        {
+          "index": 90,
+          "title": "The Atlantic Telegraph Cable Fleet Assembled at Berehaven (Southwest Coast of Ireland): Ships, the Great Eastern, H.M.S. Terrible, the Alby, the Medway and the William Cory",
+          "creator": "Robert Charles Dudley",
+          "date": "1866",
+          "centroid_dist": 4.0809,
+          "asset_id": "fQE9_0TtPbhrqg",
+          "local_image": "images/0090_the-atlantic-telegraph-cable-fleet-assembled-at-berehaven-so_fQE9_0TtPbhrqg.jpg"
+        },
+        {
+          "index": 191,
+          "title": "Boston Harbor",
+          "creator": "Fitz Henry Lane",
+          "date": "1856",
+          "centroid_dist": 4.1063,
+          "asset_id": "qQHRHH9pj16XWg",
+          "local_image": "images/0191_boston-harbor_qQHRHH9pj16XWg.jpg"
+        },
+        {
+          "index": 761,
+          "title": "Train station in Adelsberg (Postojna)",
+          "creator": null,
+          "date": "1857",
+          "centroid_dist": 4.1483,
+          "asset_id": "fgGqudjaP1MVnw",
+          "local_image": "images/0761_train-station-in-adelsberg-postojna_fgGqudjaP1MVnw.jpg"
+        },
+        {
+          "index": 193,
+          "title": "Hong Kong City and Victoria Harbour",
+          "creator": "Unknown Chinese artist",
+          "date": "1870/1875",
+          "centroid_dist": 4.2388,
+          "asset_id": "hgFHW3aEdD20pw",
+          "local_image": "images/0193_hong-kong-city-and-victoria-harbour_hgFHW3aEdD20pw.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "name": "Tactile Materiality & Sculptural Object Minimalism",
+      "slug": "tactile-materiality-sculptural-minimalism",
+      "color_hex": "#78716C",
+      "member_count": 71,
+      "percentage": 8.86,
+      "aesthetic_thesis": "Restraint in form emphasizing the tactile honesty of materials (stone, wood, resin, paper) and intentional voids as positive design elements.",
+      "core_precept": "Let physical surface texture and material weight communicate quality rather than ornamental decoration.",
+      "anchor_works": [
+        {
+          "index": 4,
+          "title": "Middle East",
+          "creator": "Douglas Coupland",
+          "date": "2014",
+          "centroid_dist": 5.0394,
+          "asset_id": "-AFWfvf5rPpOrg",
+          "local_image": "images/0004_middle-east_-AFWfvf5rPpOrg.jpg"
+        },
+        {
+          "index": 322,
+          "title": "Minimalist interiors - Noguchi Museum",
+          "creator": null,
+          "date": null,
+          "centroid_dist": 5.1328,
+          "asset_id": "owFl5k_Kr_NTvA",
+          "local_image": "images/0322_minimalist-interiors---noguchi-museum_owFl5k_Kr_NTvA.jpg"
+        },
+        {
+          "index": 386,
+          "title": "Architect's Table",
+          "creator": null,
+          "date": "circa 1795",
+          "centroid_dist": 5.1355,
+          "asset_id": "_wHGVNHseCVhmg",
+          "local_image": "images/0386_architect-s-table__wHGVNHseCVhmg.jpg"
+        },
+        {
+          "index": 389,
+          "title": "Desk",
+          "creator": "Frank Wenger",
+          "date": "1935/1942",
+          "centroid_dist": 5.15,
+          "asset_id": "7gFVlAPg5AgQiw",
+          "local_image": "images/0389_desk_7gFVlAPg5AgQiw.jpg"
+        },
+        {
+          "index": 176,
+          "title": "Coming from the Mill",
+          "creator": "LS Lowry",
+          "date": "1930 - 1930",
+          "centroid_dist": 5.1713,
+          "asset_id": "CgHDlsWICwQAvQ",
+          "local_image": "images/0176_coming-from-the-mill_CgHDlsWICwQAvQ.jpg"
+        },
+        {
+          "index": 430,
+          "title": "City Dogs",
+          "creator": "Nina Leen",
+          "date": "1944-04",
+          "centroid_dist": 5.212,
+          "asset_id": "7wHIr1XfG_lEWQ",
+          "local_image": "images/0430_city-dogs_7wHIr1XfG_lEWQ.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "name": "Graphic Semiotics, Flags & Emblems",
+      "slug": "graphic-semiotics-flags-emblems",
+      "color_hex": "#DC2626",
+      "member_count": 150,
+      "percentage": 18.73,
+      "aesthetic_thesis": "High-contrast heraldic signs, bold poster flat planes, and distilled symbolic motifs designed for immediate cognitive registration across distance.",
+      "core_precept": "Maximize silhouette contrast and reduce chromatic noise to achieve instant visual recognition.",
+      "anchor_works": [
+        {
+          "index": 120,
+          "title": "The Drowned World",
+          "creator": "Bill Walsh",
+          "date": "2019-08-20",
+          "centroid_dist": 4.3445,
+          "asset_id": "7AENK_ZGMizQTQ",
+          "local_image": "images/0120_the-drowned-world_7AENK_ZGMizQTQ.jpg"
+        },
+        {
+          "index": 615,
+          "title": "Don Quixote Series: Sancho Panza Lying Down",
+          "creator": "Candido Portinari",
+          "date": "ca. 1956",
+          "centroid_dist": 4.5665,
+          "asset_id": "6QHDrvP0kEwaZw",
+          "local_image": "images/0615_don-quixote-series-sancho-panza-lying-down_6QHDrvP0kEwaZw.jpg"
+        },
+        {
+          "index": 220,
+          "title": "Emb Flag",
+          "creator": null,
+          "date": "1870",
+          "centroid_dist": 4.5719,
+          "asset_id": "FgFynXaJNiTp4g",
+          "local_image": "images/0220_emb-flag_FgFynXaJNiTp4g.jpg"
+        },
+        {
+          "index": 133,
+          "title": "Untitled (Carpet for a children's room)",
+          "creator": "Grete Reichardt",
+          "date": "1929 (design), ca. 1977",
+          "centroid_dist": 4.612,
+          "asset_id": "9AF3kuH9kNX42w",
+          "local_image": "images/0133_untitled-carpet-for-a-children-s-room_9AF3kuH9kNX42w.jpg"
+        },
+        {
+          "index": 638,
+          "title": "Curator looking at an Ethiopian magic book showing amulet designs",
+          "creator": null,
+          "date": null,
+          "centroid_dist": 4.6445,
+          "asset_id": "AAGaXS7rPpd1VQ",
+          "local_image": "images/0638_curator-looking-at-an-ethiopian-magic-book-showing-amulet-de_AAGaXS7rPpd1VQ.jpg"
+        },
+        {
+          "index": 564,
+          "title": "Sin título \"A-C\"",
+          "creator": "Fernando García Ponce",
+          "date": "1984 - 1984",
+          "centroid_dist": 4.6992,
+          "asset_id": "dgEkjBURd0DbaA",
+          "local_image": "images/0564_sin-t-tulo-a-c_dgEkjBURd0DbaA.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "name": "Chiaroscuro Drama & Narrative Tension",
+      "slug": "chiaroscuro-drama-narrative-tension",
+      "color_hex": "#7C3AED",
+      "member_count": 94,
+      "percentage": 11.74,
+      "aesthetic_thesis": "Dramatic deep-shadow staging and directional key lighting directing viewer focus with extreme psychological and narrative intensity.",
+      "core_precept": "Use deep shadow as an active subtractive framing device to dramatize the single illuminated action point.",
+      "anchor_works": [
+        {
+          "index": 579,
+          "title": "Mrs. Jenkins' Late Night Dinner in Her Room, Alone (While, Out in the Hall Leading to Her Room, Her Small Friends were Sleeping)",
+          "creator": "Donald Roller Wilson",
+          "date": "1984",
+          "centroid_dist": 3.4262,
+          "asset_id": "mwEUgsia3_Of8w",
+          "local_image": "images/0579_mrs-jenkins-late-night-dinner-in-her-room-alone-while-out-in_mwEUgsia3_Of8w.jpg"
+        },
+        {
+          "index": 180,
+          "title": "A Boyar Wedding Feast",
+          "creator": "Konstantin Makovsky",
+          "date": "1883",
+          "centroid_dist": 3.6366,
+          "asset_id": "igHPP_wsY9gKZQ",
+          "local_image": "images/0180_a-boyar-wedding-feast_igHPP_wsY9gKZQ.jpg"
+        },
+        {
+          "index": 162,
+          "title": "Still Life of Fish and Cat",
+          "creator": "Peeters, Clara",
+          "date": null,
+          "centroid_dist": 3.6718,
+          "asset_id": "6wG_vBLJSCb_hQ",
+          "local_image": "images/0162_still-life-of-fish-and-cat_6wG_vBLJSCb_hQ.jpg"
+        },
+        {
+          "index": 33,
+          "title": "The Seven Corporal Works of Mercy",
+          "creator": "Teniers, David the younger",
+          "date": "17th century",
+          "centroid_dist": 4.212,
+          "asset_id": "2wGbuDa6kR8z5Q",
+          "local_image": "images/0033_the-seven-corporal-works-of-mercy_2wGbuDa6kR8z5Q.jpg"
+        },
+        {
+          "index": 167,
+          "title": "Princess Isabel wedding",
+          "creator": "Pedro Américo",
+          "date": "1860 - 1864",
+          "centroid_dist": 4.2493,
+          "asset_id": "AwF1LFo_tEL0fw",
+          "local_image": "images/0167_princess-isabel-wedding_AwF1LFo_tEL0fw.jpg"
+        },
+        {
+          "index": 36,
+          "title": "The Cheat with the Ace of Clubs",
+          "creator": "Georges de La Tour",
+          "date": "c. 1630–34",
+          "centroid_dist": 4.3536,
+          "asset_id": "eAHsvdrPzFNGFQ",
+          "local_image": "images/0036_the-cheat-with-the-ace-of-clubs_eAHsvdrPzFNGFQ.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "name": "Classical Architectural Scenography & Linear Perspectives",
+      "slug": "architectural-scenography-linear-perspective",
+      "color_hex": "#475569",
+      "member_count": 146,
+      "percentage": 18.23,
+      "aesthetic_thesis": "Monumental linear perspectives, Palladian proportional balance, and theatrical structural framing governing viewer movement through space.",
+      "core_precept": "Establish clear architectural sightlines and symmetrical axes before distributing secondary asymmetric content.",
+      "anchor_works": [
+        {
+          "index": 371,
+          "title": "Stage Design, Castle on Hill",
+          "creator": "Romolo Achille Liverani, Italian, 1809 - 1872",
+          "date": "early 19th century",
+          "centroid_dist": 3.5934,
+          "asset_id": "DwHJuthq26OZrg",
+          "local_image": "images/0371_stage-design-castle-on-hill_DwHJuthq26OZrg.jpg"
+        },
+        {
+          "index": 281,
+          "title": "BAMBOS 1 Design",
+          "creator": "Marcel Breuer",
+          "date": "1927",
+          "centroid_dist": 4.011,
+          "asset_id": "VAHgQP_wdq2Wyw",
+          "local_image": "images/0281_bambos-1-design_VAHgQP_wdq2Wyw.jpg"
+        },
+        {
+          "index": 453,
+          "title": "Design for a cornice: perspective",
+          "creator": "Architect: Andrea Palladio (1508-1580)",
+          "date": "1560",
+          "centroid_dist": 4.6198,
+          "asset_id": "7AHiRQ2ShRMwJg",
+          "local_image": "images/0453_design-for-a-cornice-perspective_7AHiRQ2ShRMwJg.jpg"
+        },
+        {
+          "index": 290,
+          "title": "Pine Street",
+          "creator": "Joseph Pennell",
+          "date": "1904",
+          "centroid_dist": 4.7634,
+          "asset_id": "TAEPWs8olIldsA",
+          "local_image": "images/0290_pine-street_TAEPWs8olIldsA.jpg"
+        },
+        {
+          "index": 513,
+          "title": "The large horse.",
+          "creator": "Albrecht Dürer (artist)",
+          "date": "1505",
+          "centroid_dist": 4.8684,
+          "asset_id": "yAHQgLV45kUMwA",
+          "local_image": "images/0513_the-large-horse_yAHQgLV45kUMwA.jpg"
+        },
+        {
+          "index": 161,
+          "title": "The Gare St-Lazare",
+          "creator": "Claude Monet",
+          "date": "1877",
+          "centroid_dist": 4.8993,
+          "asset_id": "dQH7QjV_XCF27w",
+          "local_image": "images/0161_the-gare-st-lazare_dQH7QjV_XCF27w.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "name": "Botanical Spatial Planning & Garden Architecture",
+      "slug": "botanical-spatial-planning-garden-architecture",
+      "color_hex": "#16A34A",
+      "member_count": 49,
+      "percentage": 6.12,
+      "aesthetic_thesis": "Harmonious balance between geometric terrace boundaries and organic vegetative flow, structuring movement through living spatial zones.",
+      "core_precept": "Create formal structural borders that contain and frame organic, fluid internal elements.",
+      "anchor_works": [
+        {
+          "index": 362,
+          "title": "On the Terrace at Haddon Hall, Derbyshire",
+          "creator": "Thomas Creswick, 1811–1869, British",
+          "date": "1840",
+          "centroid_dist": 4.7734,
+          "asset_id": "AgGR_CkZMzSJkw",
+          "local_image": "images/0362_on-the-terrace-at-haddon-hall-derbyshire_AgGR_CkZMzSJkw.jpg"
+        },
+        {
+          "index": 599,
+          "title": "Coloured plan by Gertrude Jekyll: Hestercombe Wall facing East; with borders & rill on higher level [West Rill & West Plat Border] nd [c. 1906].",
+          "creator": null,
+          "date": "1906/1907",
+          "centroid_dist": 4.993,
+          "asset_id": "YwEevSDEc1upKQ",
+          "local_image": "images/0599_coloured-plan-by-gertrude-jekyll-hestercombe-wall-facing-eas_YwEevSDEc1upKQ.jpg"
+        },
+        {
+          "index": 590,
+          "title": "Her Majesties Royal Palace at Kensington",
+          "creator": null,
+          "date": "c1707-14",
+          "centroid_dist": 5.1006,
+          "asset_id": "NAE_A4-dChj0XA",
+          "local_image": "images/0590_her-majesties-royal-palace-at-kensington_NAE_A4-dChj0XA.jpg"
+        },
+        {
+          "index": 598,
+          "title": "Privy Garden",
+          "creator": null,
+          "date": null,
+          "centroid_dist": 5.2024,
+          "asset_id": "QAHW6478njTsXw",
+          "local_image": "images/0598_privy-garden_QAHW6478njTsXw.jpg"
+        },
+        {
+          "index": 737,
+          "title": "Map of Treviso",
+          "creator": "Antonio Prati",
+          "date": "1774",
+          "centroid_dist": 5.2843,
+          "asset_id": "9wFppCqJavBAQw",
+          "local_image": "images/0737_map-of-treviso_9wFppCqJavBAQw.jpg"
+        },
+        {
+          "index": 208,
+          "title": "Hintze Hall ceiling",
+          "creator": null,
+          "date": "1881",
+          "centroid_dist": 5.3556,
+          "asset_id": "EAGE-ZZ23OTPow",
+          "local_image": "images/0208_hintze-hall-ceiling_EAGE-ZZ23OTPow.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 9,
+      "name": "Radical Geometric Abstraction & Constructivism",
+      "slug": "geometric-abstraction-constructivism",
+      "color_hex": "#EA580C",
+      "member_count": 77,
+      "percentage": 9.61,
+      "aesthetic_thesis": "Dynamic diagonal axes, floating non-objective planes, and pure chromatic vectors creating kinetic equilibrium without representational baggage.",
+      "core_precept": "Generate visual energy through asymmetrical balance and stark diagonal vector tensions.",
+      "anchor_works": [
+        {
+          "index": 271,
+          "title": "Untitled (Composition for application at the Bauhaus)",
+          "creator": "Eduard Ludwig",
+          "date": "1928-12-07",
+          "centroid_dist": 3.1247,
+          "asset_id": "UAE7N4xDuKQyDw",
+          "local_image": "images/0271_untitled-composition-for-application-at-the-bauhaus_UAE7N4xDuKQyDw.jpg"
+        },
+        {
+          "index": 243,
+          "title": "Composition (Red-Black-Gold)",
+          "creator": "Liubov Sergeievna Popova",
+          "date": "1920",
+          "centroid_dist": 3.404,
+          "asset_id": "0QGD5fSsbfSNzw",
+          "local_image": "images/0243_composition-red-black-gold_0QGD5fSsbfSNzw.jpg"
+        },
+        {
+          "index": 61,
+          "title": "Composition",
+          "creator": "Liubov Sergeievna Popova",
+          "date": "1917",
+          "centroid_dist": 3.4981,
+          "asset_id": "UgEKpgTnRQeJkw",
+          "local_image": "images/0061_composition_UgEKpgTnRQeJkw.jpg"
+        },
+        {
+          "index": 42,
+          "title": "FOUR SPACES WITH BROKEN CROSS, plate 14 from ART D'AUJOURD'HUI, MAÎTRES DE L'ART ABSTRAIT: Album I.",
+          "creator": "Sophie Taeuber-Arp",
+          "date": null,
+          "centroid_dist": 3.7495,
+          "asset_id": "igGdXWACZo2CDQ",
+          "local_image": "images/0042_four-spaces-with-broken-cross-plate-14-from-art-d-aujourd-hu_igGdXWACZo2CDQ.jpg"
+        },
+        {
+          "index": 614,
+          "title": "Wendingen",
+          "creator": "El Lissitzky",
+          "date": "1921 (published 1923)",
+          "centroid_dist": 3.9084,
+          "asset_id": "4gERQNI7MnB-xQ",
+          "local_image": "images/0614_wendingen_4gERQNI7MnB-xQ.jpg"
+        },
+        {
+          "index": 173,
+          "title": "Idéia múltipla",
+          "creator": "João José da Silva Costa",
+          "date": "1956",
+          "centroid_dist": 3.9388,
+          "asset_id": "2QHIypqHrAad8g",
+          "local_image": "images/0173_id-ia-m-ltipla_2QHIypqHrAad8g.jpg"
+        }
+      ]
+    },
+    {
+      "cluster_id": 10,
+      "name": "Intimate Historical Salons & Academic Interiors",
+      "slug": "intimate-salons-academic-interiors",
+      "color_hex": "#B45309",
+      "member_count": 35,
+      "percentage": 4.37,
+      "aesthetic_thesis": "Enclosed, human-scale domestic and scholarly chambers characterized by warm ambient light, dense intellectual curation, and acoustic containment.",
+      "core_precept": "Design high-density information environments with warm low-glare palettes to foster sustained contemplative focus.",
+      "anchor_works": [
+        {
+          "index": 533,
+          "title": "Interior of a Library",
+          "creator": "Unknown",
+          "date": "1830s–1840s",
+          "centroid_dist": 3.1158,
+          "asset_id": "ewGcmMU3L5Vvow",
+          "local_image": "images/0533_interior-of-a-library_ewGcmMU3L5Vvow.jpg"
+        },
+        {
+          "index": 510,
+          "title": "Second Empire Salon",
+          "creator": "Unknown",
+          "date": "1850–60",
+          "centroid_dist": 3.1794,
+          "asset_id": "kAFKFVFIZsGJ1A",
+          "local_image": "images/0510_second-empire-salon_kAFKFVFIZsGJ1A.jpg"
+        },
+        {
+          "index": 400,
+          "title": "Interior of a Man's Living Room",
+          "creator": "S. Tolstoi",
+          "date": "1853 ?",
+          "centroid_dist": 3.2327,
+          "asset_id": "MAHFTMKVznQPWA",
+          "local_image": "images/0400_interior-of-a-man-s-living-room_MAHFTMKVznQPWA.jpg"
+        },
+        {
+          "index": 518,
+          "title": "George James Drummond's Room at Oxford, 1853",
+          "creator": "George Pyne",
+          "date": "1853",
+          "centroid_dist": 3.2585,
+          "asset_id": "GgH0jYSQxu0IwQ",
+          "local_image": "images/0518_george-james-drummond-s-room-at-oxford-1853_GgH0jYSQxu0IwQ.jpg"
+        },
+        {
+          "index": 398,
+          "title": "Interior",
+          "creator": "Unknown",
+          "date": "early 19th century",
+          "centroid_dist": 3.3287,
+          "asset_id": "xQHJaA40W2Bdtg",
+          "local_image": "images/0398_interior_xQHJaA40W2Bdtg.jpg"
+        },
+        {
+          "index": 499,
+          "title": "Library Interior",
+          "creator": "Edward Lamson Henry",
+          "date": "ca. 1900",
+          "centroid_dist": 3.4376,
+          "asset_id": "7QHCVmmmof0wgg",
+          "local_image": "images/0499_library-interior_7QHCVmmmof0wgg.jpg"
+        }
+      ]
+    }
+  ]
+}

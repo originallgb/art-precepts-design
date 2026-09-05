@@ -1,6 +1,6 @@
 # ADR 001: Multimodal Latent Clustering Methodology & Aesthetic Taxonomy
 
-**Status**: ACCEPTED  
+**Status**: PROPOSED  
 **Date**: September 5, 2026  
 **Deciders**: <user> & Antigravity  
 **Target Artifacts**: `Google Arts & Culture/favorites_clustered.json`, `Google Arts & Culture/docs/cluster_manifest.json`, `Google Arts & Culture/docs/latent_cluster_map.svg`  

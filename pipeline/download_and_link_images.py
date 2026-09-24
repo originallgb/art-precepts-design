@@ -11,23 +11,25 @@ import shutil
 import time
 import sqlite3
 
-# Paths
-local_dir = r"<repo>\Google Arts & Culture"
-local_img_dir = os.path.join(local_dir, "images")
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
+import paths
+
+# Paths. NOTE: images/ was dropped from this repo (third-party, going
+# public) — local_img_dir is a scratch download target only, not tracked.
+local_img_dir = str(paths.REPO_ROOT / "images")
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
 gdrive_img_dir = os.path.join(gdrive_sync_dir, "images") if os.path.exists(gdrive_sync_dir) else None
 
 os.makedirs(local_img_dir, exist_ok=True)
 if gdrive_img_dir:
     os.makedirs(gdrive_img_dir, exist_ok=True)
 
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
-parent_folder_id = "REDACTED_DRIVE_FOLDER_ID" # GDrive 'Google Arts & Culture' folder
+spreadsheet_id = paths.SHEET_ID
+parent_folder_id = paths.drive_folder_id()  # GDrive 'Google Arts & Culture' folder
 img_folder_id = "REDACTED_DRIVE_FOLDER_ID"    # GDrive 'images' folder
 
 # Load enriched data
-json_path = os.path.join(local_dir, "favorites_enriched.json")
-tsv_path = os.path.join(local_dir, "favorites_enriched.tsv")
+json_path = str(paths.DATA / "favorites_enriched.json")
+tsv_path = str(paths.DATA / "favorites_enriched.tsv")
 
 with open(json_path, "r", encoding="utf-8") as f:
     favorites = json.load(f)

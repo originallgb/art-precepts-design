@@ -10,9 +10,11 @@ import csv
 import shutil
 import time
 
-mhtml_path = r"%USERPROFILE%\Downloads\Your favorites — Google Arts & Culture.mhtml"
-local_dir = r"<repo>\Google Arts & Culture"
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
+import paths
+
+mhtml_path = r"%USERPROFILE%\Downloads\Your favorites — Google Arts & Culture.mhtml"  # historical, one-time source download
+local_dir = str(paths.DATA)
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
 
 print("1. Parsing MHTML file...")
 with open(mhtml_path, "rb") as f:
@@ -157,6 +159,7 @@ else:
 
 # Check if spreadsheet already exists in folder
 sheet_query = urllib.parse.quote(f"name = 'Google Arts & Culture - Favorites' and '{folder_id}' in parents and trashed = false")
+# spreadsheet_id, once known, should generally match paths.SHEET_ID
 sheet_search = api_request(f"https://www.googleapis.com/drive/v3/files?q={sheet_query}")
 
 spreadsheet_id = None

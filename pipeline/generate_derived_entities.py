@@ -7,11 +7,12 @@ import urllib.request
 import urllib.parse
 import shutil
 
-local_dir = r"<repo>\Google Arts & Culture"
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
-json_path = os.path.join(local_dir, "favorites_enriched.json")
-tsv_path = os.path.join(local_dir, "favorites_enriched.tsv")
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+import paths
+
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
+json_path = str(paths.DATA / "favorites_enriched.json")
+tsv_path = str(paths.DATA / "favorites_enriched.tsv")
+spreadsheet_id = paths.SHEET_ID
 
 # Load enriched data
 with open(json_path, "r", encoding="utf-8") as f:
@@ -20,7 +21,7 @@ with open(json_path, "r", encoding="utf-8") as f:
 print(f"Loaded {len(data)} items for derived entity generation.")
 
 # Load raw favorites for data_ia access
-raw_json_path = os.path.join(local_dir, "favorites.json")
+raw_json_path = str(paths.DATA / "favorites.json")
 with open(raw_json_path, "r", encoding="utf-8") as f:
     raw_favs = json.load(f)
 

@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import urllib.request
 import urllib.parse
 import json
@@ -6,11 +7,14 @@ import os
 import openpyxl
 import datetime
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import paths
+
 # --- Configuration & Paths ---
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
-rev_xlsx_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\revision_115.xlsx"
-analyzed_json_path = r"<repo>\Google Arts & Culture\favorites_analyzed.json"
-enriched_json_path = r"<repo>\Google Arts & Culture\favorites_enriched.json"
+spreadsheet_id = paths.SHEET_ID
+rev_xlsx_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\revision_115.xlsx"  # historical, Windows/OPTILAB-only
+analyzed_json_path = str(paths.DATA / "favorites_analyzed.json")
+enriched_json_path = str(paths.DATA / "favorites_enriched.json")
 
 def get_token():
     return subprocess.check_output('gcloud auth print-access-token', shell=True, text=True).strip()

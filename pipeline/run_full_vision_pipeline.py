@@ -9,6 +9,9 @@ import sqlite3
 import subprocess
 import time
 import shutil
+import urllib.request
+
+import paths
 
 # Configuration
 project_id = "<gcp-project>"
@@ -16,19 +19,17 @@ location = "us-central1"
 model = "gemini-2.5-flash"
 endpoint_url = f"https://{location}-aiplatform.googleapis.com/v1/projects/{project_id}/locations/{location}/publishers/google/models/{model}:generateContent"
 
-repo_dir = r"<repo>"
-local_gac_dir = os.path.join(repo_dir, "Google Arts & Culture")
-local_img_dir = os.path.join(local_gac_dir, "images")
-catalogue_dir = os.path.join(local_gac_dir, "catalogue")
+local_img_dir = str(paths.REPO_ROOT / "images")  # historical: images/ was dropped from this repo
+catalogue_dir = str(paths.CATALOGUE)
 os.makedirs(catalogue_dir, exist_ok=True)
 
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
 gdrive_catalogue_dir = os.path.join(gdrive_sync_dir, "catalogue") if os.path.exists(gdrive_sync_dir) else None
 if gdrive_catalogue_dir:
     os.makedirs(gdrive_catalogue_dir, exist_ok=True)
 
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
+spreadsheet_id = paths.SHEET_ID
 
 # 1. Initialize SQLite Cache
 conn = sqlite3.connect(db_path)
@@ -55,7 +56,7 @@ if os.path.exists(pilot_path):
     conn.commit()
 
 # Load favorites dataset
-with open(os.path.join(local_gac_dir, "favorites_enriched.json"), "r", encoding="utf-8") as f:
+with open(str(paths.DATA / "favorites_enriched.json"), "r", encoding="utf-8") as f:
     favorites = json.load(f)
 
 print(f"Total favorites to process: {len(favorites)}")
@@ -313,8 +314,8 @@ for item in favorites:
     enriched_analyzed.append(rec)
 
 # Save JSON and TSV
-json_out = os.path.join(local_gac_dir, "favorites_analyzed.json")
-tsv_out = os.path.join(local_gac_dir, "favorites_analyzed.tsv")
+json_out = str(paths.DATA / "favorites_analyzed.json")
+tsv_out = str(paths.DATA / "favorites_analyzed.tsv")
 
 with open(json_out, "w", encoding="utf-8") as f:
     json.dump(enriched_analyzed, f, ensure_ascii=False, indent=2)
@@ -335,7 +336,7 @@ if os.path.exists(gdrive_sync_dir):
     print(f"Synced analyzed datasets to Google Drive Desktop: {gdrive_sync_dir}")
 
 # 3. Generate 800 Catalogue Markdown Notes
-print("\nGenerating 800 Catalogue Markdown notes in Google Arts & Culture/catalogue/...")
+print("\nGenerating 800 Catalogue Markdown notes in catalogue/...")
 for item in enriched_analyzed:
     idx = item["index"]
     aid = item.get("asset_id", "")

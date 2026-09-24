@@ -7,19 +7,19 @@ import shutil
 import urllib.request
 import subprocess
 
-repo_dir = r"<repo>"
-local_gac_dir = os.path.join(repo_dir, "Google Arts & Culture")
-local_img_dir = os.path.join(local_gac_dir, "images")
-catalogue_dir = os.path.join(local_gac_dir, "catalogue")
+import paths
+
+local_img_dir = str(paths.REPO_ROOT / "images")  # historical: images/ was dropped from this repo
+catalogue_dir = str(paths.CATALOGUE)
 os.makedirs(catalogue_dir, exist_ok=True)
 
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
 gdrive_catalogue_dir = os.path.join(gdrive_sync_dir, "catalogue") if os.path.exists(gdrive_sync_dir) else None
 if gdrive_catalogue_dir:
     os.makedirs(gdrive_catalogue_dir, exist_ok=True)
 
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
+spreadsheet_id = paths.SHEET_ID
 
 # 1. Load SQLite cache
 conn = sqlite3.connect(db_path)
@@ -35,7 +35,7 @@ for row in c.fetchall():
 print(f"Loaded {len(results_map)} analyses from SQLite cache.")
 
 # Load favorites dataset
-with open(os.path.join(local_gac_dir, "favorites_enriched.json"), "r", encoding="utf-8") as f:
+with open(str(paths.DATA / "favorites_enriched.json"), "r", encoding="utf-8") as f:
     favorites = json.load(f)
 
 # Build analyzed dataset
@@ -65,8 +65,8 @@ for item in favorites:
     }
     enriched_analyzed.append(rec)
 
-json_out = os.path.join(local_gac_dir, "favorites_analyzed.json")
-tsv_out = os.path.join(local_gac_dir, "favorites_analyzed.tsv")
+json_out = str(paths.DATA / "favorites_analyzed.json")
+tsv_out = str(paths.DATA / "favorites_analyzed.tsv")
 
 with open(json_out, "w", encoding="utf-8") as f:
     json.dump(enriched_analyzed, f, ensure_ascii=False, indent=2)
@@ -87,7 +87,7 @@ if os.path.exists(gdrive_sync_dir):
     print(f"Synced datasets to Google Drive Desktop: {gdrive_sync_dir}")
 
 # 2. Generate 800 Catalogue Markdown Notes
-print("\nGenerating Catalogue Markdown notes in Google Arts & Culture/catalogue/...")
+print("\nGenerating Catalogue Markdown notes in catalogue/...")
 generated_count = 0
 for item in enriched_analyzed:
     idx = item["index"]

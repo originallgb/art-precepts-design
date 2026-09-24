@@ -11,14 +11,14 @@ import subprocess
 import shutil
 import sqlite3
 
-sys.path.insert(0, r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gac_parser import parse_gac_html
+import paths
 
 # Paths
-local_dir = r"<repo>\Google Arts & Culture"
-gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\enrichment.db"
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
+db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\enrichment.db"  # historical, Windows/OPTILAB-only
+spreadsheet_id = paths.SHEET_ID
 
 # 1. Initialize SQLite Cache Database
 conn = sqlite3.connect(db_path)
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS wikidata_cache (
 conn.commit()
 
 # Load base favorites list
-json_input_path = os.path.join(local_dir, "favorites.json")
+json_input_path = str(paths.DATA / "favorites.json")
 with open(json_input_path, "r", encoding="utf-8") as f:
     favorites = json.load(f)
 
@@ -240,8 +240,8 @@ async def main():
         enriched_records.append(rec)
         
     # 6. Save JSON and TSV
-    enriched_json_path = os.path.join(local_dir, "favorites_enriched.json")
-    enriched_tsv_path = os.path.join(local_dir, "favorites_enriched.tsv")
+    enriched_json_path = str(paths.DATA / "favorites_enriched.json")
+    enriched_tsv_path = str(paths.DATA / "favorites_enriched.tsv")
     
     print(f"\nWriting local Enriched JSON: {enriched_json_path}")
     with open(enriched_json_path, "w", encoding="utf-8") as f:

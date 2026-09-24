@@ -1,8 +1,12 @@
 import sqlite3
 import json
 import os
+import sys
 
-db_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db'
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import paths
+
+db_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db'  # historical, Windows/OPTILAB-only
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
@@ -24,7 +28,7 @@ print(f"Min output bytes: {min(output_byte_lengths)} bytes")
 print(f"Max output bytes: {max(output_byte_lengths)} bytes")
 
 # Input prompt analysis
-fav_path = r'<repo>\Google Arts & Culture\favorites_enriched.json'
+fav_path = str(paths.DATA / 'favorites_enriched.json')
 with open(fav_path, 'r', encoding='utf-8') as f:
     favs = json.load(f)
 fav_by_idx = {f['index']: f for f in favs}
@@ -48,7 +52,7 @@ CRITICAL TONE DIRECTIVES:
 system_prompt_bytes = len(system_prompt.encode('utf-8'))
 system_prompt_chars = len(system_prompt)
 
-img_dir = r"<repo>\Google Arts & Culture\images"
+img_dir = str(paths.REPO_ROOT / "images")  # historical: images/ was dropped from this repo, this script predates that
 img_files = os.listdir(img_dir)
 img_by_prefix = {}
 for fn in img_files:

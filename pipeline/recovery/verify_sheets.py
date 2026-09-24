@@ -1,8 +1,13 @@
+import os
 import subprocess
+import sys
 import urllib.request
 import json
 
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import paths
+
+spreadsheet_id = paths.SHEET_ID
 token = subprocess.check_output('gcloud auth print-access-token', shell=True, text=True).strip()
 
 def api_get(url):

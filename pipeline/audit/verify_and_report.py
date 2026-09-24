@@ -1,12 +1,16 @@
 import sqlite3
 import json
 import os
+import sys
 import hashlib
 from datetime import datetime, timedelta
 import statistics
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import paths
+
 # Connect to database
-db_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db'
+db_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db'  # historical, Windows/OPTILAB-only
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
@@ -16,7 +20,7 @@ db_size = db_stat.st_size
 with open(db_path, 'rb') as f:
     db_sha256 = hashlib.sha256(f.read()).hexdigest()
 
-log_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\.system_generated\tasks\task-1232.log'
+log_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\.system_generated\tasks\task-1232.log'  # historical, Windows/OPTILAB-only
 log_stat = os.stat(log_path)
 with open(log_path, 'rb') as f:
     log_sha256 = hashlib.sha256(f.read()).hexdigest()
@@ -87,7 +91,7 @@ print(f"Live analyzed items count: {len(live_items)}")
 
 # Queue Simulation for exact latency
 t_start = datetime.strptime("2026-09-04 12:38:37.87", "%Y-%m-%d %H:%M:%S.%f")
-fav_path = r'<repo>\Google Arts & Culture\favorites_enriched.json'
+fav_path = str(paths.DATA / 'favorites_enriched.json')
 with open(fav_path, 'r', encoding='utf-8') as f:
     favs = json.load(f)
 

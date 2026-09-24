@@ -5,10 +5,12 @@ import json
 import csv
 import os
 
-token = subprocess.check_output('gcloud auth print-access-token', shell=True, text=True).strip()
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
+import paths
 
-tsv_path = r"<repo>\Google Arts & Culture\favorites_enriched.tsv"
+token = subprocess.check_output('gcloud auth print-access-token', shell=True, text=True).strip()
+spreadsheet_id = paths.SHEET_ID
+
+tsv_path = str(paths.DATA / "favorites_enriched.tsv")
 with open(tsv_path, "r", encoding="utf-8") as f:
     reader = csv.reader(f, delimiter="\t")
     rows = list(reader)

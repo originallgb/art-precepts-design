@@ -4,9 +4,10 @@ import os
 import subprocess
 import urllib.request
 
-spreadsheet_id = "1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU"
-repo_dir = r"<repo>"
-tsv_path = os.path.join(repo_dir, "Google Arts & Culture", "favorites_analyzed.tsv")
+import paths
+
+spreadsheet_id = paths.SHEET_ID
+tsv_path = str(paths.DATA / "favorites_analyzed.tsv")
 
 def get_token():
     return subprocess.check_output('gcloud auth print-access-token', shell=True, text=True).strip()

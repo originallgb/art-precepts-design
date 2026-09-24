@@ -10,6 +10,8 @@ from sklearn.decomposition import TruncatedSVD, PCA
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.cluster import KMeans
 
+import paths
+
 def hex_to_cielab(hex_str):
     hex_str = hex_str.strip().lstrip('#')
     if len(hex_str) != 6:
@@ -41,7 +43,7 @@ def hex_to_cielab(hex_str):
     return (L, a, b)
 
 # 1. Load Data
-with open("Google Arts & Culture/favorites_analyzed.json", "r", encoding="utf-8") as f:
+with open(paths.DATA / "favorites_analyzed.json", "r", encoding="utf-8") as f:
     items = json.load(f)
 
 db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"
@@ -213,13 +215,13 @@ for j, item in enumerate(items):
     clustered_items.append(new_item)
 
 # Save favorites_clustered.json
-clustered_json_path = "Google Arts & Culture/favorites_clustered.json"
+clustered_json_path = str(paths.DATA / "favorites_clustered.json")
 with open(clustered_json_path, "w", encoding="utf-8") as f:
     json.dump(clustered_items, f, indent=2, ensure_ascii=False)
 print(f"Saved {len(clustered_items)} records to {clustered_json_path}")
 
 # Save favorites_clustered.tsv
-clustered_tsv_path = "Google Arts & Culture/favorites_clustered.tsv"
+clustered_tsv_path = str(paths.DATA / "favorites_clustered.tsv")
 fieldnames = list(clustered_items[0].keys())
 with open(clustered_tsv_path, "w", encoding="utf-8", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t")
@@ -262,7 +264,7 @@ for i in range(k):
         "anchor_works": anchors
     })
 
-manifest_path = "Google Arts & Culture/docs/cluster_manifest.json"
+manifest_path = str(paths.CLUSTERS / "cluster_manifest.json")
 with open(manifest_path, "w", encoding="utf-8") as f:
     json.dump(manifest, f, indent=2, ensure_ascii=False)
 print(f"Saved cluster manifest to {manifest_path}")
@@ -333,7 +335,7 @@ for i in range(k):
 
 svg_lines.append('</svg>')
 
-svg_path = "Google Arts & Culture/docs/latent_cluster_map.svg"
+svg_path = str(paths.CLUSTERS / "latent_cluster_map.svg")
 with open(svg_path, "w", encoding="utf-8") as f:
     f.write("\n".join(svg_lines))
 print(f"Saved SVG map to {svg_path}")

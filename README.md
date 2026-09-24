@@ -1,18 +1,30 @@
 # Design precepts from 801 favourites
 
-A personal catalogue of 801 Google Arts & Culture favourites, run through a
-Gemini vision pipeline that reads each image from five design perspectives,
-then clustered into aesthetic families. The end goal is a set of `design.md`
-playbooks I can use to make real design decisions. Built in the open,
-mistakes included.
+Years of saved favourites on Google Arts & Culture, turned into a corpus I
+can reference and translate into `design.md` specs for UX work, interiors,
+and design language. Each of the 801 pieces is read by a Gemini vision
+pipeline from five design perspectives, then the set is clustered into
+aesthetic families. Built in the open, mistakes included.
+
+## What this is for
+
+I've been saving art I respond to on Google Arts & Culture for years. The
+collection says something about my taste that I couldn't articulate or use.
+The goal is a semantic translation of those selections: a structured,
+amendable corpus I can query when making real design decisions, and from
+which to seed `design.md` playbooks (colour tokens, layout rules, material
+cues, do's and don'ts) for UX projects, interior design, and wider design
+language work.
 
 ## Why in public
 
-I wanted to learn agentic AI development on a project with no commercial
-pressure, so I could get the failure modes wrong safely and write them down.
-This repo is that log. `GEMINI.md` is the rule set I wrote for the workspace
-after the first Google Sheet got overwritten in place, and
-`docs/process/engineering_learnings_and_governance.md` documents why.
+Along the way I leaned into every stage: scraping the favourites out of
+GAC, enriching them from museum metadata and Wikidata, the multimodal
+analysis, clustering. Each was a chance to try a different tool, process,
+or model, sketch an idea, and iterate. This repo keeps that record,
+including the parts that went wrong. `GEMINI.md` is the rule set I wrote
+for the workspace after the first Google Sheet got overwritten in place,
+and `docs/process/engineering_learnings_and_governance.md` documents why.
 `.agents/skills/self-audit/` is the check that's meant to run before any
 phase gets called done.
 
@@ -152,7 +164,8 @@ with an analysis I add to the note's own user-override section rather than
 edit the generated text, so the record of what the model produced stays
 intact.
 
-The pipeline was built mainly in Google Antigravity with Gemini. Four
+The pipeline was built mainly in Google Antigravity with Gemini, with side
+trips into other agents and models to compare approaches. Four
 reviews and audits are archived in `docs/reviews/`, unedited, including
 the ones that pushed back: Claude Opus 4.6 reviewed the Phase 2 plan
 critically, then separately ran a self-audit against the governing
@@ -161,8 +174,9 @@ accepting it as written; Gemini 3.8 Flash wrote the telemetry audit, which
 makes it closer to a self-check than an independent review. Each archived
 copy notes the model that wrote it.
 
-The scripts in `pipeline/` only ever lived in Antigravity scratch
-directories until I recovered them on 2026-09-24. Paths are now
+The scripts in `pipeline/`
+only ever lived in Antigravity scratch directories until I recovered them
+for going public on 2026-09-24. Paths are now
 repo-relative via `pipeline/paths.py`; private IDs come from environment
 variables. Some scripts are historical (the MHTML parser, the Windows-only
 Drive mirror steps) and are kept for the record rather than for reuse.
@@ -210,17 +224,13 @@ MIT; see `LICENSE`.
 Newest first, one or two sentences each. The longer write-ups live in
 `docs/journal/`.
 
-- **2026-09-24, going public**: images dropped for copyright, layout
-  flattened by role instead of nested under `Google Arts & Culture/`,
-  history rewritten to remove the private Drive folder IDs and my personal
-  email, the Sheet shared view-only, museum text kept with credit.
-- **2026-09-24, cost correction**: rechecked the telemetry audit's $0.077
-  against Gemini 2.5 Flash list pricing. The real figure is at least $2.08.
-  Correction noted on the report rather than editing it.
-- **2026-09-24, pipeline recovery**: the extraction, enrichment, vision,
-  clustering, recovery and audit scripts, which had only ever lived in
-  Antigravity scratch directories, recovered and committed for the first
-  time.
+- **2026-09-24, going public**: recovered the pipeline scripts from
+  Antigravity scratch and committed them for the first time. Dropped the
+  images for copyright, flattened the layout by role, rewrote history to
+  remove private Drive folder IDs and my personal email, shared the Sheet
+  view-only, and kept museum text with credit. Retracing the analysis for
+  these docs also corrected the telemetry audit's cost, $0.077 to at least
+  $2.08.
 - **2026-09-05, Phase 5 clustering and ADR 001**: k-means over a 59-dim
   feature vector produced 10 clusters, a change from the UMAP/HDBSCAN
   approach in the plan. ADR 001 stays `PROPOSED`; Grok's review found it

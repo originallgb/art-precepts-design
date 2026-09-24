@@ -27,12 +27,15 @@ Culture, at least 150 carrying an explicit copyright notice. I dropped them
 entirely. Every catalogue note now links to its GAC source page instead of
 embedding the image. The analysis text in each note is untouched.
 
-**The Drive folder ID.** It was in the README and in one script. I pulled it
-out of both. Scripts that need it now read `GAC_DRIVE_FOLDER_ID` from the
-environment, via `pipeline/paths.py`, and fail with a clear message if it's
-not set, rather than falling back to a hardcoded value. A second, separate
-private Drive folder ID (for the images subfolder) turned up in the same
-audit and got the same treatment.
+**The Drive folder ID.** It was in the README and in one script, which
+never actually used it (dead code left over from an earlier version). I
+pulled the ID out of both places and moved the lookup into
+`pipeline/paths.drive_folder_id()`, which reads `GAC_DRIVE_FOLDER_ID` from
+the environment and fails with a clear message if it's not set, for
+whatever later needs it. A second, separate private Drive folder ID (for
+the images subfolder, this one genuinely in use) turned up in the same
+audit and got the same treatment, as `drive_images_folder_id()` /
+`GAC_DRIVE_IMAGES_FOLDER_ID`.
 
 **Layout.** Everything sat under `Google Arts & Culture/`, whose spaces and
 ampersand made every path reference awkward. I flattened it by role:
@@ -45,5 +48,4 @@ this actually is: a learning project, with the mistakes left in rather than
 smoothed over.
 
 The clustering, the catalogue notes, and their generated analysis are
-otherwise unchanged by any of this. What changed is where things live and
-how honestly the README describes how they got made.
+otherwise unchanged by any of this.

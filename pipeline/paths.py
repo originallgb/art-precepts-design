@@ -1,6 +1,6 @@
 """Repo-relative paths and IDs shared by the pipeline scripts.
 
-Kept deliberately tiny: constants and one lazy lookup, no logic. Import
+Kept deliberately tiny: constants and two lazy ID lookups, no logic. Import
 this as `import paths` (or `from paths import ...`). Each script that
 needs it inserts its own directory's parent onto sys.path first, so it
 works whether you run `python pipeline/<script>.py` from the repo root

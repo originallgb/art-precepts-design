@@ -19,7 +19,7 @@ without that machine and its Drive Desktop mirror.
   neither ID is hardcoded here; export them yourself before running a script
   that needs one:
   ```
-  GAC_DRIVE_FOLDER_ID=... GAC_DRIVE_IMAGES_FOLDER_ID=... python pipeline/download_and_link_images.py
+  GAC_DRIVE_IMAGES_FOLDER_ID=... python pipeline/download_and_link_images.py
   ```
 
 Scripts directly under `pipeline/` do `import paths` as-is. Scripts one level

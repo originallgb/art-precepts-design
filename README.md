@@ -37,10 +37,19 @@ Using the phase numbering from the original plan:
   used and is still `PROPOSED`, not accepted: Grok's review said not to
   accept it as written, because the document overstated its empirical
   validation and didn't account for the change of algorithm.
-- **Phase 6, catalogue notes**: the 801 markdown notes in `catalogue/`,
-  each carrying the generated critique and heuristics. Done.
+- **Phase 6, catalogue notes**: the 801 markdown notes in `catalogue/`. 800
+  of them carry the generated critique and heuristics; one (index 0602, an
+  interactive tour card with no static image) has no critique because it
+  was never analysed. Done.
 - **Phase 7, the design playbook**: not started. `design.md` standards per
   cluster.
+
+Later documents (the ADR, the reviews, `generate_phase2a_clustering.py`)
+call the clustering work "Phase 2a" rather than Phase 5. That's a second,
+narrower numbering: `docs/process/implementation_plan.md` bundles Phases
+5-7 above into its own "Phase 2", with sub-phases 2a (clustering and the
+ADR), 2b (catalogue notes), 2c/2d (playbooks). This README keeps the
+original plan's top-level 0-7 numbering throughout.
 
 ## What I've learned so far
 
@@ -73,23 +82,23 @@ disagree with an analysis I add to the note's own user-override section
 rather than edit the generated text, so the record of what the model
 actually produced stays intact.
 
-The pipeline was built mainly in Google Antigravity with Gemini. Reviews at
-each gate came from different models rather than one model checking its own
-output: Claude Opus 4.6 reviewed the Phase 2 plan critically, then ran a
-self-audit against the governing documents after Phase 2a; Grok 4.6
-reviewed ADR 001 and recommended against accepting it. A separate telemetry
-audit of the vision pipeline was written by Gemini 3.8 Flash, auditing a
-Gemini 2.5 Flash run, so that one is closer to a documented self-check than
-an independent review. All four are archived in `docs/reviews/`, including
-the ones that pushed back, with the reviewing model attributed to each.
-`GEMINI.md` is the standing rule set for the workspace, and
-`.agents/skills/self-audit/SKILL.md` is the self-check meant to run against
-governing documents before a phase gets presented as finished.
+The pipeline was built mainly in Google Antigravity with Gemini. Four
+reviews and audits are archived in `docs/reviews/`, unedited, including the
+ones that pushed back: Claude Opus 4.6 reviewed the Phase 2 plan critically,
+then separately ran a self-audit against the governing documents after
+Phase 2a; Grok 4.6 reviewed ADR 001 and recommended against accepting it as
+written; Gemini 3.8 Flash wrote a telemetry audit of the vision pipeline,
+which was itself a Gemini 2.5 Flash run, so that one is closer to a
+documented self-check than an independent review. Each archived copy notes
+the model that wrote it. `GEMINI.md` is the standing rule set for the
+workspace, and `.agents/skills/self-audit/SKILL.md` is the self-check meant
+to run against governing documents before a phase gets presented as
+finished.
 
-The telemetry audit puts the cost of the full 800-item vision pass, cross-
-checked against SQLite timestamps and SHA-256-hashed evidence files, at
-$0.077 USD over roughly 25 minutes across 10 parallel workers. That's the
-audit's own figure and methodology; see
+The telemetry audit estimates the cost of the full 800-item vision pass, by
+sampling actual token counts via Vertex AI's `:countTokens` endpoint and
+extrapolating at list price, at $0.077 USD over roughly 25 minutes across
+10 parallel workers. That's the audit's own figure and methodology; see
 `docs/process/telemetry_audit_report.md` for the derivation.
 
 ## Repo map
@@ -159,7 +168,7 @@ Newest first. One or two sentences each. Longer write-ups live in
   critique.
 - **2026-09-04, vocabulary change**: replaced "genome" with "design
   precepts" across the plan and docs, and banned a list of art-critic
-  clichés, after deciding the earlier framing didn't hold up.
+  clichés.
 - **2026-09-04, initial extraction**: 801 favourites pulled from a saved GAC
   page and pushed to a fresh Google Sheet, alongside the 800 preview images
   and Draft Plan 1.

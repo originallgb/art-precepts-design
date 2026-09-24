@@ -1,0 +1,59 @@
+{
+  "source_commit": "79a1a3432bd0a950a3f3d9e2d8f45ed89419e610",
+  "stage_counts": {
+    "favorites_enriched": 801,
+    "favorites_clustered": 801,
+    "favorites": 801,
+    "favorites_analyzed": 801
+  },
+  "unique_asset_ids": {
+    "favorites_enriched": 801,
+    "favorites_clustered": 801,
+    "favorites": 801,
+    "favorites_analyzed": 801
+  },
+  "catalogue_count": 801,
+  "nonempty_critiques": 800,
+  "palette_hex_count_distribution": {
+    "5": 778,
+    "0": 19,
+    "2": 2,
+    "3": 2
+  },
+  "cluster_counts": {
+    "1": 68,
+    "4": 71,
+    "8": 49,
+    "7": 146,
+    "5": 150,
+    "3": 60,
+    "6": 94,
+    "9": 77,
+    "2": 51,
+    "10": 35
+  },
+  "cluster_2_ehrlich_count": 34,
+  "analyzed_fields_preserved_in_clustered": true,
+  "identical_scripted_affordance_count": 801,
+  "blank_override_count": 801,
+  "catalogue_cluster_id_count": 0,
+  "banned_term_note_counts": {
+    "genome": 0,
+    "tapestry": 3,
+    "juxtaposition": 107,
+    "evocative": 7,
+    "dance of light and shadow": 0
+  },
+  "reachable_raster_path_count": 0,
+  "tracked_content_unchanged_by_verification": true,
+  "dataset_sha256": {
+    "data/favorites.json": "320b730daf0c956ae292cadf4e23a2697922ffdfc6d4f58a5d86c50f7977813d",
+    "data/favorites.tsv": "7e0f544eaf032ddf4d405d68c2f512c44675724f14bdc36c361b31c4bf49c0c6",
+    "data/favorites_analyzed.json": "de04a70de226696695d4f7625d82740b4357399aba8c9027a6591cc64436fb8b",
+    "data/favorites_analyzed.tsv": "aba6137446f07068fecfdd20a5913872b9defa325caaf0eb4af213831c327baf",
+    "data/favorites_clustered.json": "11a8100d1fcbffb238e6ab6e8e160e94b471e993378740cdc8338bcd0d216d62",
+    "data/favorites_clustered.tsv": "01e28985bb95d3f07423a711d12fbc4b269843095027c9468aa85b3b6b1090e8",
+    "data/favorites_enriched.json": "e5b25377e14a993c199cdc4119540ccec2d276397ace4635f0ba51dc025c70d9",
+    "data/favorites_enriched.tsv": "073ff60be23567818f1835429bf6b455b94109f79b25f370504b650e25487798"
+  }
+}

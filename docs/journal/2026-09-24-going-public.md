@@ -43,7 +43,16 @@ The old README had a roadmap for phases that were already done. Rewriting
 it meant retracing how the analysis actually happened, from the Antigravity
 session history for 2026-09-04.
 
-I'd asked for an advisor agent to plan the analysis and propose "board
+The story starts earlier than the repo's first real commit. On
+2026-09-02 I built CuratorMD in Google AI Studio from a one-line prompt.
+It read the favourites Sheet and ran three Gemini roles in turn: an
+analyst per artwork, a curator over the set, and a design-systems author
+for the `design.md`. Going back through it for this write-up, two things
+stood out. Its analysis never sent the images, only titles and metadata.
+And the prompt that would have scaled it to the whole Sheet died on a
+quota error. The app is now in `apps/curatormd/`, exported as it stands.
+
+Two days later, back in Antigravity, I'd asked for an advisor agent to plan the analysis and propose "board
 members". It came back with five personas: a Formalist, an Industrial & UX
 Designer, a Cultural Semiotician, a Spatial Materialist, and a Colorist &
 Typographer. Those became the 5 Angles of a single structured prompt, one

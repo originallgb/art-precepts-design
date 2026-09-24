@@ -18,9 +18,10 @@ language work.
 
 ## The name
 
-The project started as `art-to-design`. When I recreated the repo on
-2026-09-05 to shed the AI Studio template it had been generated from, I
-renamed it `art-precepts-design`. Art and Design sit on the flanks, and
+The repo started life on 2026-09-02 as `art-to-deisng`, typo included,
+created by AI Studio from its app template. It became `art-to-design` two
+days later. When I recreated it on 2026-09-05 to shed that template
+lineage, I renamed it `art-precepts-design`. Art and Design sit on the flanks, and
 Precepts, the rules the pipeline extracts, hold the middle as the bridge
 between them. The agent read that as a chiasmus. I'd call it a synchysis:
 art and design aren't mirrored, they're interlocked, with the precepts
@@ -46,8 +47,9 @@ phase gets called done.
 
 Using the phase numbering from the original plan:
 
-- **Phase 0, extraction**: 801 favourites pulled from a saved GAC page,
-  parsed, and pushed to a Google Sheet. Done, 2026-09-04.
+- **Phase 0, extraction**: 801 favourites pulled from GAC, parsed, and
+  pushed to a Google Sheet. Done, 2026-08-30 to 31; first committed
+  2026-09-04.
 - **Phase 1, metadata enrichment**: curatorial fields, Wikidata links,
   physical dimensions, aspect ratios. Done.
 - **Phase 2, visual asset caching**: 800 images collected and synced. Done
@@ -78,6 +80,38 @@ narrower numbering: `docs/process/implementation_plan.md` bundles Phases
 5-7 above into its own "Phase 2", with sub-phases 2a (clustering and the
 ADR), 2b (catalogue notes), 2c/2d (playbooks). This README keeps the
 original 0-7 numbering throughout.
+
+## The first attempt: CuratorMD
+
+Before the pipeline in this repo, there was an app. On 2026-09-02, with
+the favourites already in a Google Sheet, I opened Google AI Studio's
+Build mode and gave Gemini 3.7 Flash one rough prompt: an app that reads
+my GAC links from a sheet, runs visual and compositional analysis,
+curates the pieces into non-obvious themes, and writes `design.md`
+guidelines. Five minutes later it had built CuratorMD, a full-stack
+React and Express app. The code is in `apps/curatormd/`, exported
+unchanged, with the build conversation in `BUILD_HISTORY.md`.
+
+CuratorMD split the work across three Gemini calls, each playing a
+different expert:
+
+1. An art historian and composition analyst, once per artwork: palette
+   with roles, composition type, visual weight, focal points, type
+   pairing.
+2. A museum curator, once over the whole set: two to four cross-cutting
+   themes with a short essay each.
+3. A design-systems author: the `design.md` and a set of tokens, with a
+   live sandbox and exports to CSS, Tailwind, and Figma tokens.
+
+It ran on my AI Studio API key. Two things sent me elsewhere. The
+per-artwork "visual" analysis never saw the images: the app sends Gemini
+the title, artist, date, medium, and museum, and the model works from
+what it already knows about the piece. And my third prompt, which asked
+for manual curation tools, mood boards, and style tagging across the
+whole Sheet, died on "Quota exceeded". Two days later I picked the work
+back up in Antigravity, and the questions CuratorMD raised shaped what
+came next: send the actual images, run all 800, and cache every result.
+CuratorMD is still open in AI Studio, stuck at that quota error.
 
 ## The analysis pipeline
 
@@ -274,6 +308,11 @@ Newest first, one or two sentences each. The longer write-ups live in
 - **2026-09-04, vocabulary change**: replaced "genome" with "design
   precepts" across the plan and docs, and banned a list of art-critic
   clichés.
-- **2026-09-04, initial extraction**: 801 favourites pulled from a saved
-  GAC page and pushed to a Google Sheet, alongside 800 preview images and
-  Draft Plan 1.
+- **2026-09-04, first commit**: the favourites dataset, 800 preview
+  images, and Draft Plan 1 committed to `art-to-design`.
+- **2026-09-02, CuratorMD**: built an AI Studio app that read the Sheet
+  and ran three Gemini stages (artwork analysis, curation, `design.md`).
+  Its analysis worked from titles, not images, and the next prompt hit the
+  quota. The repo was created from its AI Studio template that night.
+- **2026-08-30 to 31, extraction**: 801 favourites scraped from GAC into a
+  new Google Sheet, and 800 preview images downloaded.

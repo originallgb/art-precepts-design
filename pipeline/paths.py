@@ -1,6 +1,6 @@
 """Repo-relative paths and IDs shared by the pipeline scripts.
 
-Kept deliberately tiny: constants and two lazy ID lookups, no logic. Import
+Kept deliberately tiny: constants and three lazy ID lookups, no logic. Import
 this as `import paths` (or `from paths import ...`). Each script that
 needs it inserts its own directory's parent onto sys.path first, so it
 works whether you run `python pipeline/<script>.py` from the repo root
@@ -48,4 +48,20 @@ def drive_images_folder_id():
         raise RuntimeError(
             "GAC_DRIVE_IMAGES_FOLDER_ID is not set. Export it before "
             "running this script; see pipeline/README.md."
+        ) from exc
+
+
+def gcp_project_id():
+    """Return the GCP/Vertex AI project ID from the environment.
+
+    Not hardcoded here: the project ID identifies a specific billing
+    account. Set GCP_PROJECT before running a script that needs it, e.g.:
+        GCP_PROJECT=your-project python pipeline/run_full_vision_pipeline.py
+    """
+    try:
+        return os.environ["GCP_PROJECT"]
+    except KeyError as exc:
+        raise RuntimeError(
+            "GCP_PROJECT is not set. Export it before running this "
+            "script; see pipeline/README.md."
         ) from exc

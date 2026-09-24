@@ -14,7 +14,7 @@ import urllib.request
 import paths
 
 # Configuration
-project_id = "<gcp-project>"
+project_id = paths.gcp_project_id()
 location = "us-central1"
 model = "gemini-2.5-flash"
 endpoint_url = f"https://{location}-aiplatform.googleapis.com/v1/projects/{project_id}/locations/{location}/publishers/google/models/{model}:generateContent"
@@ -28,7 +28,7 @@ gdrive_catalogue_dir = os.path.join(gdrive_sync_dir, "catalogue") if os.path.exi
 if gdrive_catalogue_dir:
     os.makedirs(gdrive_catalogue_dir, exist_ok=True)
 
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
+db_path = r"<agy-session>\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
 spreadsheet_id = paths.SHEET_ID
 
 # 1. Initialize SQLite Cache
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS analysis_cache (
 conn.commit()
 
 # Seed SQLite with pilot results if available
-pilot_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\pilot_results.json"  # historical, Windows/OPTILAB-only
+pilot_path = r"<agy-session>\scratch\pilot_results.json"  # historical, Windows/OPTILAB-only
 if os.path.exists(pilot_path):
     with open(pilot_path, "r", encoding="utf-8") as f:
         pilot_data = json.load(f)

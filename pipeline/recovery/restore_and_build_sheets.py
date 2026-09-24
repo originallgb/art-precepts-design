@@ -12,7 +12,7 @@ import paths
 
 # --- Configuration & Paths ---
 spreadsheet_id = paths.SHEET_ID
-rev_xlsx_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\revision_115.xlsx"  # historical, Windows/OPTILAB-only
+rev_xlsx_path = r"<agy-session>\scratch\revision_115.xlsx"  # historical, Windows/OPTILAB-only
 analyzed_json_path = str(paths.DATA / "favorites_analyzed.json")
 enriched_json_path = str(paths.DATA / "favorites_enriched.json")
 

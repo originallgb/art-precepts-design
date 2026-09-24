@@ -17,7 +17,7 @@ import paths
 
 # Paths
 gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\enrichment.db"  # historical, Windows/OPTILAB-only
+db_path = r"<agy-session>\scratch\enrichment.db"  # historical, Windows/OPTILAB-only
 spreadsheet_id = paths.SHEET_ID
 
 # 1. Initialize SQLite Cache Database

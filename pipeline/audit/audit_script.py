@@ -6,7 +6,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import paths
 
-db_path = r'%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db'  # historical, Windows/OPTILAB-only
+db_path = r'<agy-session>\scratch\multimodal_analysis.db'  # historical, Windows/OPTILAB-only
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 

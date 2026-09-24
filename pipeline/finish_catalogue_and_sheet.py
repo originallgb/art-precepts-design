@@ -18,7 +18,7 @@ gdrive_catalogue_dir = os.path.join(gdrive_sync_dir, "catalogue") if os.path.exi
 if gdrive_catalogue_dir:
     os.makedirs(gdrive_catalogue_dir, exist_ok=True)
 
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
+db_path = r"<agy-session>\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
 spreadsheet_id = paths.SHEET_ID
 
 # 1. Load SQLite cache

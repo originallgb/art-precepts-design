@@ -15,8 +15,8 @@ Originals are left in place. Each archived copy has YAML provenance at the top.
 | File | When (UTC) | Authoring model | Git | Original |
 |---|---|---|---|---|
 | [20260904T1558Z_gemini-3.8-flash-high_telemetry-audit.md](./20260904T1558Z_gemini-3.8-flash-high_telemetry-audit.md) | 2026-09-04 15:58 | **Gemini 3.8 Flash (High)** via `telemetry_auditor` subagent (`Model=inherit`) | committed `bb719e9` (PR #2) | `docs/telemetry_audit_report.md` |
-| [20260904T2113Z_claude-opus-4.6_phase2-critical-review.md](./20260904T2113Z_claude-opus-4.6_phase2-critical-review.md) | 2026-09-04 21:13 | **Claude Opus 4.6 (Thinking)** | uncommitted (brain only) | `~/.gemini/antigravity/brain/agy-session-2287/phase2_critical_review.md` |
-| [20260905T0820Z_claude-opus-4.6_phase2a-self-audit.md](./20260905T0820Z_claude-opus-4.6_phase2a-self-audit.md) | 2026-09-05 08:20 | **Claude Opus 4.6 (Thinking)** | uncommitted (brain only) | `~/.gemini/antigravity/brain/agy-session-2287/phase2a_self_audit.md` |
+| [20260904T2113Z_claude-opus-4.6_phase2-critical-review.md](./20260904T2113Z_claude-opus-4.6_phase2-critical-review.md) | 2026-09-04 21:13 | **Claude Opus 4.6 (Thinking)** | uncommitted (brain only) | `<agy-session>/phase2_critical_review.md` |
+| [20260905T0820Z_claude-opus-4.6_phase2a-self-audit.md](./20260905T0820Z_claude-opus-4.6_phase2a-self-audit.md) | 2026-09-05 08:20 | **Claude Opus 4.6 (Thinking)** | uncommitted (brain only) | `<agy-session>/phase2a_self_audit.md` |
 | [20260905T0846Z_grok-4.6_adr-001-latent-clustering-methodology.md](./20260905T0846Z_grok-4.6_adr-001-latent-clustering-methodology.md) | 2026-09-05 08:46 | **Grok 4.6** | uncommitted (this folder) | written in this Grok Build session |
 
 ## How models were identified

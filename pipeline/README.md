@@ -9,7 +9,7 @@ without that machine and its Drive Desktop mirror.
 ## Paths and environment
 
 `paths.py` holds the shared, repo-relative constants (`REPO_ROOT`, `DATA`,
-`CATALOGUE`, `CLUSTERS`) plus the two IDs scripts need:
+`CATALOGUE`, `CLUSTERS`) plus the three IDs scripts need:
 
 - `SHEET_ID`: defaults to the project's Google Sheet ID. Override with the
   `GAC_SHEET_ID` environment variable if you're pointing at a different sheet.
@@ -20,6 +20,12 @@ without that machine and its Drive Desktop mirror.
   that needs one:
   ```
   GAC_DRIVE_IMAGES_FOLDER_ID=... python pipeline/download_and_link_images.py
+  ```
+- `gcp_project_id()`: reads the `GCP_PROJECT` environment variable and
+  raises a clear error if it's unset. The GCP/Vertex AI project ID isn't
+  hardcoded here either; export it before running a script that needs it:
+  ```
+  GCP_PROJECT=your-project python pipeline/run_full_vision_pipeline.py
   ```
 
 Scripts directly under `pipeline/` do `import paths` as-is. Scripts one level

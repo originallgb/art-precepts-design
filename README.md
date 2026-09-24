@@ -1,6 +1,6 @@
 # Art Precepts Design
 
-I've been saving things I like on Google Arts & Culture for years:
+I've been saving artefacts I respond to on [Google Arts & Culture](https://artsandculture.google.com/) for 15 years:
 paintings, maps, furniture, architectural drawings. I wanted to find out
 whether that collection could tell me something useful about my taste,
 and whether I could turn it into guidance for things I make.

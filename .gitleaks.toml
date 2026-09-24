@@ -1,0 +1,30 @@
+title = "art-precepts-design gitleaks config"
+
+# Extend gitleaks' own default rule set rather than replacing it.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known-safe identifiers for this repo: public sheet ids and this repo's own redaction placeholders."
+regexes = [
+  # The project's Google Sheet (view-only once public; not a secret).
+  '''1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU''',
+  # Google's public sample sheet id, referenced in docs.
+  '''1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms''',
+  # This repo's own redaction/placeholder strings, never real values.
+  '''REDACTED_DRIVE_FOLDER_ID''',
+  '''<agy-session>''',
+  '''<repo>''',
+  '''<workspace>''',
+  '''<drive-mirror>''',
+  '''<user>''',
+  '''<gcp-project>''',
+  '''agy-session-[0-9a-f]{4}''',
+]
+
+# The synthetic leaky fixtures exist specifically to be caught by
+# scripts/sanitize.py and are exercised directly by the `tests` job; they
+# must not trip the secrets job, which is not what they are testing.
+paths = [
+  '''tests/fixtures/leaky/.*''',
+]

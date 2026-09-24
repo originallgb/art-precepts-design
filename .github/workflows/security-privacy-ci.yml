@@ -1,0 +1,123 @@
+name: Security, Privacy & Data Integrity Gate
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: secrets
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          # GITLEAKS_LICENSE is only required for gitleaks-action on GitHub
+          # Orgs; this is a personal-account repo, so the free tier applies
+          # and no licence key is needed here.
+
+  privacy:
+    name: privacy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run sanitize.py --check
+        run: python3 scripts/sanitize.py --check
+
+  data-integrity:
+    name: data-integrity
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run validate_data.py
+        run: python3 scripts/validate_data.py
+      - name: Destructive-change guard (data/)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: python3 scripts/check_no_destructive_data_changes.py
+
+  pipeline-syntax:
+    name: pipeline-syntax
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Syntax-only check on pipeline/
+        run: ruff check --select E9,F63,F7,F82 pipeline
+
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run unit tests (includes the leaky fixtures explicitly)
+        run: python3 -m unittest discover tests -v
+
+  release-gate:
+    name: release-gate
+    if: always() && startsWith(github.ref, 'refs/tags/v')
+    needs: [secrets, privacy, data-integrity, pipeline-syntax, tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Verify all gates passed before release
+        run: |
+          echo "secrets:        ${{ needs.secrets.result }}"
+          echo "privacy:        ${{ needs.privacy.result }}"
+          echo "data-integrity: ${{ needs.data-integrity.result }}"
+          echo "pipeline-syntax:${{ needs.pipeline-syntax.result }}"
+          echo "tests:          ${{ needs.tests.result }}"
+          if [ "${{ needs.secrets.result }}" != "success" ] || \
+             [ "${{ needs.privacy.result }}" != "success" ] || \
+             [ "${{ needs.data-integrity.result }}" != "success" ] || \
+             [ "${{ needs.pipeline-syntax.result }}" != "success" ] || \
+             [ "${{ needs.tests.result }}" != "success" ]; then
+            echo "One or more required gates failed or were skipped. Blocking release." >&2
+            exit 1
+          fi
+          echo "All gates green. Release tag ${{ github.ref_name }} may proceed."

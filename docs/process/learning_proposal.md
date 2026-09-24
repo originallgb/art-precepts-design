@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-05 proposal that produced `GEMINI.md` and the `.agents/skills/self-audit/` skill, both of which now exist unchanged from what is proposed here. "Phase 1" and "Phase 2a" below are this document's own numbering; Phase 2a is the clustering work, the README's Phase 5.
+
 # Learning Proposal: Phase 1→2 Behavioral Corrections
 
 > **Source**: This session's arc from Phase 1 incident remediation through Phase 2a self-audit. The self-audit (Section E) surfaced 5 gaps — 3 of which repeated the exact failure patterns documented in Phase 1. These are the reusable corrections.

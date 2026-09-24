@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-04 comparison written before the live vision run (the README's Phase 4), kept as a record of the options considered rather than as current guidance. No batch job was ever run. The Flash cost figures below ($0.30 interactive, $0.15 batch) use the same wrong per-token rate later corrected in `docs/process/telemetry_audit_report.md`: at Gemini 2.5 Flash's published list price ($0.30 per million input tokens, $2.50 per million output tokens including thinking), the actual interactive spend was at least $2.08.
+
 # Guide: Gemini 2.5 Pro Batch API & Vision Model Landscape
 
 This reference document outlines the technical requirements for running **Gemini 2.5 Pro via the Batch API** (50% discount), alongside a comparative survey of alternative image analysis and multimodal models available across Google Cloud and direct frontier APIs.

@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-04 draft plan, kept as written. Its Phases 1 to 4 map to the README's Phases 4 to 7: Phase 1 (vision analysis) is README Phase 4, Phase 2 (clustering) is Phase 5, Phase 3 (the living catalogue) is Phase 6, and Phase 4 ("Anatomy of a design.md File") is the spec for Phase 7. Since this was written, clustering used k-means rather than UMAP/HDBSCAN, the CLIP visual-embedding step described here was not used, catalogue images were removed, the repository was flattened out of the `Google Arts & Culture/` layout, and the live Gemini 2.5 Flash run replaced the batch approach considered elsewhere. The GitHub repository link below points to `originallgb/art-to-design`, which is now a private archive.
+
 # DRAFT PLAN 1: Design Precepts & Playbook Pipeline
 **Document Version**: 1.0.0-final-draft  
 **Date**: September 4, 2026  

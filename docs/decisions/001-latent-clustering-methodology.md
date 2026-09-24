@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-05 ADR proposing the clustering method that was actually used (the README's Phase 5). It is kept as written; status is still PROPOSED because Grok's review (see `docs/reviews/`) recommended against accepting it as written. The paths above use the old `Google Arts & Culture/...` layout, since flattened to `data/`, `clusters/` and `catalogue/`.
+
 # ADR 001: Multimodal Latent Clustering Methodology & Aesthetic Taxonomy
 
 **Status**: PROPOSED  

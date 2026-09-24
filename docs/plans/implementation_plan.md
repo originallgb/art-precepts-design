@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-04 plan for its own "Phase 2", which maps to the README's Phases 5 to 7: 2a (clustering, the ADR) is README Phase 5 and ran; 2b (adding `cluster_id`/`cluster_name` to catalogue notes) is Phase 6 and did not run; 2c/2d (the `design.md` playbooks) is Phase 7 and did not run either. No issue currently tracks that remaining work. Paths below use the old `Google Arts & Culture/...` layout, which no longer exists after the flatten to `data/`, `catalogue/`, `clusters/`, `pipeline/`, `docs/`.
+
 # Phase 2 Implementation Plan: Latent Clustering, Catalogue Notes & Design Playbook
 
 > **Strategic Governance Principle**:  

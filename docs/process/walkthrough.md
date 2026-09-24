@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-04 write-up of the vision run, kept as written. "Phase 1" here is the README's Phase 4 (multimodal analysis). The cost figure below ($0.30) uses the wrong per-token rate later corrected in `docs/process/telemetry_audit_report.md`: at Gemini 2.5 Flash's published list price ($0.30 per million input tokens, $2.50 per million output tokens including thinking), the actual spend was at least $2.08. "Next Phase" describes UMAP + HDBSCAN; what ran on 2026-09-05 was k-means (see `docs/decisions/001-latent-clustering-methodology.md`). The relative image links below no longer exist; images were dropped from the catalogue for copyright reasons. The GitHub repository link points to `originallgb/art-to-design`, which is now a private archive.
+
 # Walkthrough: Phase 1 Multimodal Vision Pipeline & Catalogue Generation
 
 ## 1. Executive Summary
@@ -32,10 +34,10 @@ All outputs have been synchronized across local storage, Google Drive Desktop, G
 - **Dashboard Tab**: `Curated Fine Art Gallery Dashboard` with interactive `=IMAGE(...)` thumbnails.
 
 ### D. Documentation & Guides
-- **[batch_and_vision_models_guide.md](file:///<repo>/Google%20Arts%20&%20Culture/docs/batch_and_vision_models_guide.md)**:
+- **[batch_and_vision_models_guide.md](batch_and_vision_models_guide.md)**:
   - Technical requirements and JSONL schema for running **Gemini 2.5 Pro via Batch API** (50% discount: $\sim \$1.90$ for 800 works).
   - Comparative survey of alternative image analysis models across Google Cloud (Flash, Pro, Cloud Vision API, Qwen2-VL, PaliGemma 2) and direct APIs (Claude 3.5 Sonnet, GPT-4o, Mistral Pixtral Large).
-- **[draft_plan_1_design_precepts.md](file:///<repo>/Google%20Arts%20&%20Culture/plans/draft_plan_1_design_precepts.md)**:
+- **[draft_plan_1_design_precepts.md](../plans/draft_plan_1_design_precepts.md)**:
   - Master architectural plan enforcing the clean vocabulary (**The Catalogue**, **The 5 Angles**, **Precepts & Heuristics**, **The Design Playbook**).
 
 ### E. GitHub Repository

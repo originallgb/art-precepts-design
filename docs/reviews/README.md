@@ -50,5 +50,5 @@ These are not reviews/audits (plans, governance, or GitHub objects):
 | `docs/adr_001_latent_clustering_methodology.md` | Decision record, not a review. Subject of the Grok review above. |
 | `docs/engineering_learnings_and_governance.md` | Governance protocol produced after the Phase 2 critical review. Authored 2026-09-04 21:54 under Gemini 3.8 Flash (Medium). Committed `4b5518f` on `main`. |
 | `plans/draft_plan_1_design_precepts.md` | Plan packet. Advisor subagent used Antigravity `Model=pro` at 2026-09-04 10:14. |
-| [GitHub Issue #1](https://github.com/originallgb/art-to-design/issues/1) | Incident ticket, not a markdown audit. |
-| [GitHub PR #2](https://github.com/originallgb/art-to-design/pull/2) | Merge vehicle for the telemetry audit. |
+| [GitHub Issue #1](https://github.com/originallgb/art-to-design/issues/1) | Incident ticket, not a markdown audit. The linked repository is now a private archive; see `docs/process/2026-09-04-sheet-overwrite-incident.md` for the verbatim body. |
+| [GitHub PR #2](https://github.com/originallgb/art-to-design/pull/2) | Merge vehicle for the telemetry audit. The linked repository is now a private archive; see `docs/process/2026-09-04-sheet-overwrite-incident.md` for the verbatim body. |

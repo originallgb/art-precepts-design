@@ -1,3 +1,5 @@
+> **Correction note (2026-09-24).** This is the 2026-09-04 governance protocol written after the Sheet-overwrite incident during the README's Phase 1 (enrichment). Its rules were later folded into `GEMINI.md` at the repo root. The repository link below points to `originallgb/art-to-design`, which is now a private archive. The $0.30 cost figure at §"Incident" below was itself one of the unverified claims being described; see `docs/process/telemetry_audit_report.md` for the corrected figure of at least $2.08.
+
 # Engineering Learnings & Governance Protocol
 
 **Repository**: [originallgb/art-to-design](https://github.com/originallgb/art-to-design)  

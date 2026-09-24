@@ -46,7 +46,7 @@ def hex_to_cielab(hex_str):
 with open(paths.DATA / "favorites_analyzed.json", "r", encoding="utf-8") as f:
     items = json.load(f)
 
-db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"
+db_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\multimodal_analysis.db"  # historical, Windows/OPTILAB-only
 conn = sqlite3.connect(db_path)
 c = conn.cursor()
 c.execute("SELECT index_num, json_result FROM analysis_cache")

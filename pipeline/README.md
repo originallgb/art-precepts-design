@@ -11,14 +11,15 @@ without that machine and its Drive Desktop mirror.
 `paths.py` holds the shared, repo-relative constants (`REPO_ROOT`, `DATA`,
 `CATALOGUE`, `CLUSTERS`) plus the two IDs scripts need:
 
-- `SHEET_ID` — defaults to the project's Google Sheet ID. Override with the
+- `SHEET_ID`: defaults to the project's Google Sheet ID. Override with the
   `GAC_SHEET_ID` environment variable if you're pointing at a different sheet.
-- `drive_folder_id()` — reads `GAC_DRIVE_FOLDER_ID` from the environment and
-  raises a clear error if it's unset. The Drive folder is private, so its ID
-  is never hardcoded here; export it yourself before running a script that
-  needs it:
+- `drive_folder_id()` and `drive_images_folder_id()`: each reads its own
+  environment variable (`GAC_DRIVE_FOLDER_ID`, `GAC_DRIVE_IMAGES_FOLDER_ID`)
+  and raises a clear error if it's unset. Both Drive folders are private, so
+  neither ID is hardcoded here; export them yourself before running a script
+  that needs one:
   ```
-  GAC_DRIVE_FOLDER_ID=... python pipeline/download_and_link_images.py
+  GAC_DRIVE_FOLDER_ID=... GAC_DRIVE_IMAGES_FOLDER_ID=... python pipeline/download_and_link_images.py
   ```
 
 Scripts directly under `pipeline/` do `import paths` as-is. Scripts one level

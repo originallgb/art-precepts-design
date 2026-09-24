@@ -14,7 +14,7 @@ import sqlite3
 import paths
 
 # Paths. NOTE: images/ was dropped from this repo (third-party, going
-# public) — local_img_dir is a scratch download target only, not tracked.
+# public); local_img_dir is a scratch download target only, not tracked.
 local_img_dir = str(paths.REPO_ROOT / "images")
 gdrive_sync_dir = r"<drive-mirror>\Google Arts & Culture"  # historical, Windows/OPTILAB-only
 gdrive_img_dir = os.path.join(gdrive_sync_dir, "images") if os.path.exists(gdrive_sync_dir) else None
@@ -24,8 +24,10 @@ if gdrive_img_dir:
     os.makedirs(gdrive_img_dir, exist_ok=True)
 
 spreadsheet_id = paths.SHEET_ID
-parent_folder_id = paths.drive_folder_id()  # GDrive 'Google Arts & Culture' folder
-img_folder_id = "REDACTED_DRIVE_FOLDER_ID"    # GDrive 'images' folder
+# NOTE: img_folder_id is the private GDrive 'images' subfolder ID, a
+# second private ID distinct from paths.drive_folder_id(). Also read from
+# the environment rather than hardcoded, for the same reason.
+img_folder_id = paths.drive_images_folder_id()
 
 # Load enriched data
 json_path = str(paths.DATA / "favorites_enriched.json")

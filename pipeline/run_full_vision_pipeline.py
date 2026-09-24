@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS analysis_cache (
 conn.commit()
 
 # Seed SQLite with pilot results if available
-pilot_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\pilot_results.json"
+pilot_path = r"%USERPROFILE%\.gemini\antigravity\brain\agy-session-2287\scratch\pilot_results.json"  # historical, Windows/OPTILAB-only
 if os.path.exists(pilot_path):
     with open(pilot_path, "r", encoding="utf-8") as f:
         pilot_data = json.load(f)

@@ -9,111 +9,128 @@ included.
 
 I wanted to learn agentic AI development on a project with no commercial
 pressure, so I could get the failure modes wrong safely and write them down.
-This repo is that log. The pipeline scripts were recovered from scratch
-directories after a session loss, so some of them still carry the scars.
-`GEMINI.md` and `docs/process/engineering_learnings_and_governance.md` are
-the rules I wrote for myself after the first Google Sheet got overwritten in
-place. `.agents/skills/self-audit/` is the check I now run before calling any
-phase done.
+This repo is that log. `GEMINI.md` is the rule set I wrote for the workspace
+after the first Google Sheet got overwritten in place, and
+`docs/process/engineering_learnings_and_governance.md` documents why.
+`.agents/skills/self-audit/` is the check that's meant to run before any
+phase gets called done.
 
 ## Where it stands
 
+Using the phase numbering from the original plan:
+
 - **Phase 0, extraction**: 801 favourites pulled from a saved GAC page,
-  parsed, and pushed to a Google Sheet. Done.
-- **Phase 1, enrichment**: curatorial metadata, Wikidata links, physical
-  dimensions, aspect ratios. Done.
-- **Phase 2, vision analysis**: all 800 image-bearing items (one card had no
-  static image) run through Gemini 2.5 Flash on Vertex AI for the 5-Angle
-  critique. Done, 2026-09-04.
-- **Phase 2a, clustering**: k-means over a 59-dimension feature vector
-  (CIELAB colour, spatial/categorical attributes, TF-IDF semantic text),
-  10 clusters. Done, but ADR 001 is still `PROPOSED`, not accepted. Grok's
-  review said not to accept it as written: the document overstated its
-  empirical validation and needs a Gate 2a pass before status changes.
-- **Phase 3, playbooks**: not started. `design.md` standards per cluster.
+  parsed, and pushed to a Google Sheet. Done, 2026-09-04.
+- **Phase 1, metadata enrichment**: curatorial fields, Wikidata links,
+  physical dimensions, aspect ratios. Done.
+- **Phase 2, visual asset caching**: 800 images collected and synced. Done
+  at the time; the images have since been dropped from this repo for
+  copyright reasons ahead of going public.
+- **Phase 3, architecture planning**: Draft Plan 1 committed.
+- **Phase 4, multimodal analysis**: all 800 image-bearing items (one card
+  had no static image) run through Gemini 2.5 Flash on Vertex AI for the
+  5-Angle critique. Done, 2026-09-04.
+- **Phase 5, latent clustering**: done, 2026-09-05, but not as planned. The
+  plan called for UMAP/HDBSCAN; what actually ran was k-means over a
+  59-dimension feature vector (CIELAB colour, spatial/categorical
+  attributes, TF-IDF semantic text). ADR 001 documents the methodology
+  used and is still `PROPOSED`, not accepted: Grok's review said not to
+  accept it as written, because the document overstated its empirical
+  validation and didn't account for the change of algorithm.
+- **Phase 6, catalogue notes**: the 801 markdown notes in `catalogue/`,
+  each carrying the generated critique and heuristics. Done.
+- **Phase 7, the design playbook**: not started. `design.md` standards per
+  cluster.
 
 ## What I've learned so far
 
-The costliest mistake was a script that updated the live Sheet in place,
-renamed the primary tab, and wiped the image preview formulas. The fix was a
-recovery from a Drive revision. The rule that came out of it: no script
-touches an existing dataset or sheet tab in place, only additive new files
-or new tabs. That rule is now in `GEMINI.md` and enforced by convention, not
-by code, because I decided the friction of enforcing it in code wasn't worth
-it for a solo project at this size.
+The costliest mistake so far was a script that updated the live Sheet in
+place: it renamed the primary tab and wiped the image preview formulas. The
+fix, in PR #2, restored the sheet from a prior Drive revision. The review
+that followed found the fix had been verified and reported, but the PR
+itself was left unmerged while planning for the next phase had already
+started from a branch that hadn't landed on `main`. Both incidents, with
+root cause and correction, are written up in
+`docs/process/engineering_learnings_and_governance.md`.
 
-The second mistake was procedural: closing a PR wasn't the same as merging
-it, and I let planning for the next phase start from a branch that hadn't
-landed on `main`. Both mistakes are written up properly in
-`docs/process/engineering_learnings_and_governance.md`, with root cause and
-correction for each.
+The rule that came out of the first incident: no script touches an existing
+dataset or sheet tab in place, only additive new files or new tabs. It's
+enforced by convention in `GEMINI.md`, not by code. For a solo project at
+this size I judged the code-level enforcement not worth the friction.
 
-The clustering ADR is the clearest example of a pattern I keep having to
-correct: a document claiming `ACCEPTED` before the review that was supposed
-to accept it had actually happened. `GEMINI.md` now has a standing rule that
-status fields track reality, not aspiration, because of it.
+The ADR is the clearest recent example of a pattern that keeps recurring: a
+document marked `ACCEPTED` before the review meant to accept it had
+happened. `GEMINI.md` now has a standing rule that status fields track
+reality, not aspiration.
 
 ## How it's built
 
 The per-artwork analysis in `catalogue/` (the precept critique, the design
-heuristics, the 5 Angles) was generated by the Gemini API from each image,
-not hand-written. I wrote the prompts, set the schema, and reviewed the
-output, but the words in each note are the model's. Where I disagree with an
-analysis I'll add to the note's user override section rather than edit the
-generated text in place, so the record of what the model actually said stays
-intact.
+heuristics, the 5 Angles) was generated by the Gemini API from each image.
+It isn't hand-written. I wrote the prompts, set the response schema, and
+reviewed the output, but the words in each note are the model's. Where I
+disagree with an analysis I add to the note's own user-override section
+rather than edit the generated text, so the record of what the model
+actually produced stays intact.
 
-The pipeline itself was built mainly in Google Antigravity with Gemini. Gate
-reviews at each phase came from three different models: Claude Opus, Gemini,
-and Grok, cross-checking each other's work rather than one model marking its
-own homework. Those reviews are archived in `docs/reviews/`, unedited,
-including the ones that said no. `GEMINI.md` is the standing rule set for
-the workspace; `.agents/skills/self-audit/SKILL.md` is the self-check I run
-against governing documents before presenting a phase as finished.
+The pipeline was built mainly in Google Antigravity with Gemini. Reviews at
+each gate came from different models rather than one model checking its own
+output: Claude Opus 4.6 reviewed the Phase 2 plan critically, then ran a
+self-audit against the governing documents after Phase 2a; Grok 4.6
+reviewed ADR 001 and recommended against accepting it. A separate telemetry
+audit of the vision pipeline was written by Gemini 3.8 Flash, auditing a
+Gemini 2.5 Flash run, so that one is closer to a documented self-check than
+an independent review. All four are archived in `docs/reviews/`, including
+the ones that pushed back, with the reviewing model attributed to each.
+`GEMINI.md` is the standing rule set for the workspace, and
+`.agents/skills/self-audit/SKILL.md` is the self-check meant to run against
+governing documents before a phase gets presented as finished.
 
-Cost for the full 800-item vision pass, verified against SQLite timestamps
-and Vertex AI token counts rather than estimated: $0.077 USD, in roughly
-25 minutes across 10 parallel workers. That figure and its derivation are in
-`docs/process/telemetry_audit_report.md`.
+The telemetry audit puts the cost of the full 800-item vision pass, cross-
+checked against SQLite timestamps and SHA-256-hashed evidence files, at
+$0.077 USD over roughly 25 minutes across 10 parallel workers. That's the
+audit's own figure and methodology; see
+`docs/process/telemetry_audit_report.md` for the derivation.
 
 ## Repo map
 
 ```
 catalogue/          801 markdown notes, one per artwork
-clusters/           cluster manifest and a 2D latent map (Phase 2a)
-data/                favourites at each pipeline stage (raw, enriched, analyzed, clustered)
+clusters/            cluster manifest and a 2D latent map (Phase 5)
+data/                favourites at each pipeline stage (raw, enriched, analysed, clustered)
 docs/
-  decisions/         ADRs (001, latent clustering, still PROPOSED)
-  reviews/           gate reviews from Claude, Gemini, and Grok, archived unedited
-  process/           plans, learnings, telemetry audit, walkthroughs
-  journal/           dated dev-log entries, this file's longer-form companion
-pipeline/            the scripts, recovered from Antigravity scratch after a session loss
+  decisions/          ADRs (001, latent clustering, still PROPOSED)
+  reviews/             gate reviews, archived with the reviewing model attributed
+  process/             plans, learnings, telemetry audit, walkthroughs
+  journal/             dated dev-log entries, this file's longer-form companion
+pipeline/            the scripts behind each phase, recovered from Antigravity scratch
 GEMINI.md            standing workspace rules
 .agents/             the self-audit skill
 ```
 
 `pipeline/README.md` documents what each script does and which ones are
-historical: MHTML-source, Windows-only artefacts of the OPTILAB machine this
-was first built on, kept for the record rather than for reuse.
+historical: MHTML-source or Windows/OPTILAB-only artefacts, kept for the
+record rather than for reuse.
 
 ## Data and rights
 
 The 801 artworks are third-party, on loan from museums and partner
 institutions via Google Arts & Culture. No image is stored or redistributed
-here, they were dropped from the repo before it went public. Each catalogue
+here; they were dropped from the repo before it went public. Each catalogue
 note links to its GAC source page instead.
 
 `curatorial_description` and other museum-supplied metadata fields in
-`data/` remain the copyright of the partner institutions, credited via
-Google Arts & Culture, and are kept for reference and citation only.
+`data/` remain the copyright of the partner institutions that supplied them
+via Google Arts & Culture, credited accordingly, and are kept for reference
+and citation only.
 
-My own writing, and the AI-generated precept critiques and design heuristics
-in `catalogue/`, are licensed CC BY 4.0. See `LICENSE-content.md`. Code is
-MIT, see `LICENSE`.
+My own writing, and the AI-generated precept critiques and design
+heuristics in `catalogue/`, are licensed CC BY 4.0. See
+`LICENSE-content.md`. Code is MIT, see `LICENSE`.
 
 ## Links
 
-- [The master Google Sheet](https://docs.google.com/spreadsheets/d/1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU/edit) (view-only)
+- [The master Google Sheet](https://docs.google.com/spreadsheets/d/1Tznbdor6-JFLkGNtuN5StasMSopnLkhdqzgbq7NWdAU/edit)
 - [Journal](docs/journal/)
 
 ## Changes and decisions log
@@ -123,25 +140,26 @@ Newest first. One or two sentences each. Longer write-ups live in
 
 - **2026-09-24, going public**: images dropped for copyright, layout
   flattened by role instead of nested under `Google Arts & Culture/`,
-  history rewritten to remove the private Drive folder ID and my personal
-  email, the Sheet set to view-only, museum text kept with credit.
+  history rewritten to remove the private Drive folder ID(s) and my
+  personal email, the Sheet set to view-only, museum text kept with credit.
 - **2026-09-24, pipeline recovery**: the extraction, enrichment, vision,
-  clustering, recovery, and audit scripts recovered from Antigravity scratch
-  directories on OPTILAB after the working session that produced them was
-  lost.
-- **2026-09-05, Phase 2a clustering and ADR 001**: k-means over a 59-dim
-  multimodal feature vector produced 10 clusters. ADR 001 documents the
-  methodology and stays `PROPOSED`, Grok's review found it overstated its
-  validation.
+  clustering, recovery, and audit scripts, which had only ever lived in
+  Antigravity scratch directories on OPTILAB, were recovered and committed
+  to the repo for the first time.
+- **2026-09-05, Phase 5 clustering and ADR 001**: k-means over a 59-dim
+  multimodal feature vector produced 10 clusters, a change from the
+  UMAP/HDBSCAN approach in the original plan. ADR 001 documents the method
+  and stays `PROPOSED`; Grok's review found it overstated its validation.
 - **2026-09-04, Google Sheet restore**: an automated export overwrote the
   primary tab in place and dropped the image previews. Fixed by restoring
   from a Drive revision (PR #2), and by writing the non-destructive rule
   that's now in `GEMINI.md`.
 - **2026-09-04, Gemini multimodal analysis**: all 800 image-bearing
   favourites run through Gemini 2.5 Flash on Vertex AI for the 5-Angle
-  critique, verified against SQLite and token-count evidence.
+  critique.
 - **2026-09-04, vocabulary change**: replaced "genome" with "design
   precepts" across the plan and docs, and banned a list of art-critic
   clichés, after deciding the earlier framing didn't hold up.
-- **2026-09-02, initial extraction**: 801 favourites pulled from a saved GAC
-  page and pushed to a fresh Google Sheet.
+- **2026-09-04, initial extraction**: 801 favourites pulled from a saved GAC
+  page and pushed to a fresh Google Sheet, alongside the 800 preview images
+  and Draft Plan 1.

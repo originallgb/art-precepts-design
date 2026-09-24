@@ -1,7 +1,7 @@
 """Repo-relative paths and IDs shared by the pipeline scripts.
 
 Kept deliberately tiny: constants and one lazy lookup, no logic. Import
-this as `import paths` (or `from paths import ...`) — each script that
+this as `import paths` (or `from paths import ...`). Each script that
 needs it inserts its own directory's parent onto sys.path first, so it
 works whether you run `python pipeline/<script>.py` from the repo root
 or the script lives one level deeper, in pipeline/recovery/ or
@@ -31,5 +31,21 @@ def drive_folder_id():
     except KeyError as exc:
         raise RuntimeError(
             "GAC_DRIVE_FOLDER_ID is not set. Export it before running this "
-            "script — see pipeline/README.md."
+            "script; see pipeline/README.md."
+        ) from exc
+
+
+def drive_images_folder_id():
+    """Return the private Google Drive 'images' subfolder ID.
+
+    A second, distinct private ID from drive_folder_id(); also not
+    hardcoded. Set GAC_DRIVE_IMAGES_FOLDER_ID before running a script
+    that needs it.
+    """
+    try:
+        return os.environ["GAC_DRIVE_IMAGES_FOLDER_ID"]
+    except KeyError as exc:
+        raise RuntimeError(
+            "GAC_DRIVE_IMAGES_FOLDER_ID is not set. Export it before "
+            "running this script; see pipeline/README.md."
         ) from exc

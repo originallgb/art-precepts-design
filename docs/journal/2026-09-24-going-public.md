@@ -56,11 +56,13 @@ Reviewing the staged repo, the analysis pipeline was nearly invisible.
 The README said Gemini wrote the critiques and moved on, which skipped
 the most interesting decisions in the project: an advisor agent designed a
 five-persona board, the personas were folded into the 5 Angles of one
-structured prompt instead of five agents per image, and the Batch API was
-costed and then passed over for live calls on 2.5 Flash. That's all in the
+structured prompt, and the Batch API was costed before the live 2.5 Flash
+run that produced the catalogue. I remember trying batch with AI Studio
+keys, but I haven't found a record of it yet. That's all in the
 README now, under "The analysis pipeline", with log entries for each step.
 
 Retracing it also turned up a bad number. The telemetry audit's $0.077
 headline used per-token rates well below Gemini 2.5 Flash's list price;
-recomputed from its own token counts, the run cost about $2. The report
+recomputed from its own token counts at Google's published rates, the run
+cost at least $2.08, and more once thinking tokens are counted. The report
 stays as written, with a correction note at the top.

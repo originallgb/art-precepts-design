@@ -55,8 +55,6 @@ original 0-7 numbering throughout.
 
 ## The analysis pipeline
 
-This is the core of the project, so it gets its own section.
-
 **The brief.** With the corpus enriched, I asked for the images and
 metadata to be batch-loaded through a multimodal analysis that would
 describe and critique each piece, and asked for a higher-reasoning advisor
@@ -74,10 +72,9 @@ the work from a different angle:
 | The Spatial Materialist | 4. Light, Space & Materiality | light and shadow, negative space, depth, surface |
 | The Colorist & Typographer | 5. Color & Typography | palette (as hex), contrast, temperature, letterform weight |
 
-**From five agents to one call.** The advisor's own recommendation was to
-prompt a single model to adopt all five lenses rather than run five
-separate agents per image, and that's what shipped. Each image gets one
-Gemini call with a system prompt naming the five Angles and a strict JSON
+**From five personas to one call.** The advisor recommended prompting the
+model to adopt the personas as lenses. What shipped is one Gemini call per
+image, with a system prompt naming the five Angles and a strict JSON
 response schema with seven parts: one object per Angle, plus a
 three-sentence `precept_critique` and three to five `design_heuristics`.
 The schema is what keeps the perspectives separate; the prompt also bans a
@@ -86,10 +83,10 @@ list of art-critic clichés by name.
 **Batch versus live.** Before running, I costed the Gemini Batch API (a
 flat 50% discount, results within 24 hours) against live calls, and
 compared Gemini 2.5 Pro and Flash with other vision models. The comparison
-is `docs/process/batch_and_vision_models_guide.md`. At this scale the
-absolute cost was small either way, so I took live calls on 2.5 Flash for
-the speed and the ability to watch it run. No batch job was ever
-submitted.
+is `docs/process/batch_and_vision_models_guide.md`. The run that produced
+this catalogue used live calls on 2.5 Flash through Vertex AI. I haven't
+found a record of a batch job, though I remember trying the Batch API with
+AI Studio keys, so that part of the story is still open.
 
 **The run.** `pipeline/run_full_vision_pipeline.py`, 2026-09-04, 12:38 to
 13:04 UTC. Three items were done first as a pilot, then the remaining 797
@@ -103,11 +100,14 @@ catalogue notes.
 `docs/process/telemetry_audit_report.md`, reconstructing the run from the
 cache database and log. The timings and schema checks hold up. The cost
 doesn't: it priced 2.5 Flash at a small fraction of its actual list rate
-and arrived at $0.077. Using the audit's own token counts (about 1.52M in,
-648K out) at the list prices I understand to apply ($0.30 per million in,
-$2.50 per million out), the run cost roughly **$2**, more if thinking
-tokens were billed. The report is kept as written with a correction note
-at the top. The lesson I take from it is in the next section.
+and arrived at $0.077. Its per-token rates appear to be Gemini 1.5
+Flash's old per-1,000-character prices applied to 2.5 Flash tokens. At
+Google's published 2.5 Flash rates ($0.30 per million tokens in, $2.50 per
+million out, thinking tokens included), the audit's own counts (about 1.52M
+in, 648K out) come to roughly **$2.08**. That's a floor: the script set no
+thinking budget, and thinking tokens bill as output but don't appear in the
+JSON the audit measured. The report is kept as written with a correction
+note at the top.
 
 ## What I've learned so far
 
@@ -133,9 +133,10 @@ reality, not aspiration.
 The telemetry audit is the same pattern in a different place. It calls
 itself "independently verified" and "cryptographically validated", it was
 written by the same family of model that did the run, and its headline
-cost figure is off by more than twenty times. Confident formatting is not
-verification. Numbers that matter get checked against a primary source,
-here the provider's price list, before they're repeated.
+cost figure is off by more than twenty-five times. Confident formatting
+isn't verification. I've found the fix is dull: numbers that matter get
+checked against a primary source, here the provider's price list and the
+billing report, before they're repeated.
 
 ## How it's built
 
@@ -210,7 +211,7 @@ Newest first, one or two sentences each. The longer write-ups live in
   history rewritten to remove the private Drive folder IDs and my personal
   email, the Sheet shared view-only, museum text kept with credit.
 - **2026-09-24, cost correction**: rechecked the telemetry audit's $0.077
-  against Gemini 2.5 Flash list pricing; the real figure is roughly $2.
+  against Gemini 2.5 Flash list pricing. The real figure is at least $2.08.
   Correction noted on the report rather than editing it.
 - **2026-09-24, pipeline recovery**: the extraction, enrichment, vision,
   clustering, recovery and audit scripts, which had only ever lived in
@@ -228,13 +229,13 @@ Newest first, one or two sentences each. The longer write-ups live in
   cost figure later turned out wrong.
 - **2026-09-04, the vision run**: 800 images through Gemini 2.5 Flash on
   Vertex AI in about 25 minutes, ten at a time, every result schema-valid.
-- **2026-09-04, live calls over batch**: costed the Gemini Batch API
-  against live calls and compared vision models. Chose live 2.5 Flash for
-  speed and visibility, since the cost difference was small at this scale.
+- **2026-09-04, batch costed, live run**: costed the Gemini Batch API
+  against live calls and compared vision models. The catalogue came from a
+  live 2.5 Flash run; no record of a batch job has turned up.
 - **2026-09-04, five perspectives, one call**: an advisor agent proposed a
   five-persona board (Formalist, UX Designer, Semiotician, Spatial
-  Materialist, Colorist & Typographer). Rather than five agents per image,
-  the personas became the 5 Angles of a single structured prompt.
+  Materialist, Colorist & Typographer). The personas became the 5 Angles
+  of a single structured prompt per image.
 - **2026-09-04, vocabulary change**: replaced "genome" with "design
   precepts" across the plan and docs, and banned a list of art-critic
   clichés.

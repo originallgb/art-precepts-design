@@ -44,7 +44,8 @@ it meant retracing how the analysis actually happened, from the Antigravity
 session history for 2026-09-04.
 
 The story starts earlier than the repo's first real commit. On
-2026-09-02 I built CuratorMD in Google AI Studio from a one-line prompt.
+2026-09-02 I bashed out CuratorMD on my phone as a one-shot app sketch in
+Google AI Studio.
 It read the favourites Sheet and ran three Gemini roles in turn: an
 analyst per artwork, a curator over the set, and a design-systems author
 for the `design.md`. Going back through it for this write-up, two things

@@ -19,9 +19,11 @@ language work.
 ## The name
 
 The repo started life on 2026-09-02 as `art-to-deisng`, typo included,
-created by AI Studio from its app template. It became `art-to-design` two
-days later. When I recreated it on 2026-09-05 to shed that template
-lineage, I renamed it `art-precepts-design`. Art and Design sit on the flanks, and
+when I exported the CuratorMD sketch from AI Studio to GitHub. GitHub
+labels repos made that way "generated from" an AI Studio template, which
+is just how AI Studio exports. It became `art-to-design` two days later.
+When I recreated it on 2026-09-05 to drop that label, I renamed it
+`art-precepts-design`. Art and Design sit on the flanks, and
 Precepts, the rules the pipeline extracts, hold the middle as the bridge
 between them. The agent read that as a chiasmus. I'd call it a synchysis:
 art and design aren't mirrored, they're interlocked, with the precepts
@@ -85,7 +87,8 @@ original 0-7 numbering throughout.
 
 Before the pipeline in this repo, there was an app. On 2026-09-02, with
 the favourites already in a Google Sheet, I opened Google AI Studio's
-Build mode and gave Gemini 3.7 Flash one rough prompt: an app that reads
+Build mode on my phone and bashed out a one-shot app sketch for Gemini
+3.7 Flash, typos and all: an app that reads
 my GAC links from a sheet, runs visual and compositional analysis,
 curates the pieces into non-obvious themes, and writes `design.md`
 guidelines. Five minutes later it had built CuratorMD, a full-stack
@@ -290,7 +293,7 @@ Newest first, one or two sentences each. The longer write-ups live in
   these docs also corrected the telemetry audit's cost, $0.077 to at least
   $2.08.
 - **2026-09-05, renamed to art-precepts-design**: recreated the repo
-  without its AI Studio template lineage and renamed it from
+  without the "generated from" label AI Studio's export leaves, renamed from
   `art-to-design`. The old repo was kept as an archive.
 - **2026-09-05, Phase 5 clustering and ADR 001**: k-means over a 59-dim
   feature vector produced 10 clusters, a change from the UMAP/HDBSCAN
@@ -321,7 +324,8 @@ Newest first, one or two sentences each. The longer write-ups live in
   images, and Draft Plan 1 committed to `art-to-design`.
 - **2026-09-02, CuratorMD**: built an AI Studio app that read the Sheet
   and ran three Gemini stages (artwork analysis, curation, `design.md`).
-  Its analysis worked from titles, not images, and the next prompt hit the
-  quota. The repo was created from its AI Studio template that night.
+  A one-shot sketch typed on my phone. Its analysis worked from titles, not
+  images, and a later prompt hit the quota. Exporting it to GitHub that
+  night created the repo.
 - **2026-08-30 to 31, extraction**: 801 favourites scraped from GAC into a
   new Google Sheet, and 800 preview images downloaded.

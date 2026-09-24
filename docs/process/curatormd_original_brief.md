@@ -6,7 +6,7 @@ of what the project is for, written before I got distracted polishing the
 app's UX. Everything since, the vision pipeline, the clustering, and the
 playbooks still to come, is working towards it.
 
-My prompt, verbatim:
+My prompt, typed on my phone as a one-shot sketch, verbatim:
 
 > an app that hcreates design.md andguideelines from a users favirorited art on google arts adn culture. the app analyzes list of google arts and culture links from a google sheet, runs visual and compositional . curates images into non obvois curatorial themes and collections.
 

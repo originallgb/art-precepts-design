@@ -80,13 +80,17 @@ three-sentence `precept_critique` and three to five `design_heuristics`.
 The schema is what keeps the perspectives separate; the prompt also bans a
 list of art-critic clichés by name.
 
-**Batch versus live.** Before running, I costed the Gemini Batch API (a
-flat 50% discount, results within 24 hours) against live calls, and
-compared Gemini 2.5 Pro and Flash with other vision models. The comparison
-is `docs/process/batch_and_vision_models_guide.md`. The run that produced
-this catalogue used live calls on 2.5 Flash through Vertex AI. I haven't
-found a record of a batch job, though I remember trying the Batch API with
-AI Studio keys, so that part of the story is still open.
+**Platform and batch versus live.** Before running anything at scale I
+had the pipeline compared against a pure GCP build and a Cloudflare Workers
+AI build, weighing model quality and speed to try it over cost. After a
+three-image pilot on 2.5 Flash, agy priced the Gemini Batch API (a flat 50%
+discount) against live calls and offered three options: live parallel
+Flash, batch Flash, or batch Pro. I picked live Flash, and asked for the
+2.5 Pro batch requirements and a survey of other vision models to be
+written up anyway. That write-up is
+`docs/process/batch_and_vision_models_guide.md`. No batch job ran. The
+estimates in that exchange ($0.30 live, $0.15 batch for Flash) had the same
+pricing error as the audit below.
 
 **The run.** `pipeline/run_full_vision_pipeline.py`, 2026-09-04, 12:38 to
 13:04 UTC. Three items were done first as a pilot, then the remaining 797
@@ -229,9 +233,12 @@ Newest first, one or two sentences each. The longer write-ups live in
   cost figure later turned out wrong.
 - **2026-09-04, the vision run**: 800 images through Gemini 2.5 Flash on
   Vertex AI in about 25 minutes, ten at a time, every result schema-valid.
-- **2026-09-04, batch costed, live run**: costed the Gemini Batch API
-  against live calls and compared vision models. The catalogue came from a
-  live 2.5 Flash run; no record of a batch job has turned up.
+- **2026-09-04, live over batch**: after a three-image pilot, chose live
+  parallel 2.5 Flash over batch Flash or batch Pro, and had the 2.5 Pro
+  batch requirements documented for later.
+- **2026-09-04, platform comparison**: compared the local Python and
+  Gemini pipeline with a pure GCP build and a Cloudflare Workers AI build.
+  Stayed local-first for model quality and speed to try it.
 - **2026-09-04, five perspectives, one call**: an advisor agent proposed a
   five-persona board (Formalist, UX Designer, Semiotician, Spatial
   Materialist, Colorist & Typographer). The personas became the 5 Angles

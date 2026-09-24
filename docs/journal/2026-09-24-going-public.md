@@ -56,9 +56,10 @@ Reviewing the staged repo, the analysis pipeline was nearly invisible.
 The README said Gemini wrote the critiques and moved on, which skipped
 the most interesting decisions in the project: an advisor agent designed a
 five-persona board, the personas were folded into the 5 Angles of one
-structured prompt, and the Batch API was costed before the live 2.5 Flash
-run that produced the catalogue. I remember trying batch with AI Studio
-keys, but I haven't found a record of it yet. That's all in the
+structured prompt, and after a pilot I chose live parallel 2.5 Flash over
+batch Flash or batch Pro, while asking for the Pro batch requirements to be
+documented. I'd remembered batch as the route taken. The session history
+says otherwise, which is exactly why it's worth keeping. That's all in the
 README now, under "The analysis pipeline", with log entries for each step.
 
 Retracing it also turned up a bad number. The telemetry audit's $0.077

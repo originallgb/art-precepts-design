@@ -92,6 +92,13 @@ guidelines. Five minutes later it had built CuratorMD, a full-stack
 React and Express app. The code is in `apps/curatormd/`, exported
 unchanged, with the build conversation in `BUILD_HISTORY.md`.
 
+Gemini's summary of that first build is still the best statement of
+what this project is for: palettes with UI roles, composition and visual
+laws, non-obvious curatorial collections, and `design.md` with live tokens
+and exports. I've kept it verbatim, with a status line for each part, in
+`docs/process/curatormd_original_brief.md`. Everything since is working
+towards it.
+
 CuratorMD split the work across three Gemini calls, each playing a
 different expert:
 
@@ -103,8 +110,10 @@ different expert:
 3. A design-systems author: the `design.md` and a set of tokens, with a
    live sandbox and exports to CSS, Tailwind, and Figma tokens.
 
-It ran on my AI Studio API key. Two things sent me elsewhere. The
-per-artwork "visual" analysis never saw the images: the app sends Gemini
+It ran on my AI Studio API key. Then I got distracted: my second prompt
+restyled the app's UX instead of deepening the analysis. Two things
+eventually sent me elsewhere. The per-artwork "visual" analysis never saw
+the images: the app sends Gemini
 the title, artist, date, medium, and museum, and the model works from
 what it already knows about the piece. And my third prompt, which asked
 for manual curation tools, mood boards, and style tagging across the

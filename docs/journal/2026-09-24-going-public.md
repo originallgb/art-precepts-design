@@ -52,8 +52,12 @@ stood out. Its analysis never sent the images, only titles and metadata.
 And the prompt that would have scaled it to the whole Sheet died on a
 quota error. The app is now in `apps/curatormd/`, exported as it stands.
 
-Two days later, back in Antigravity, I'd asked for an advisor agent to plan the analysis and propose "board
-members". It came back with five personas: a Formalist, an Industrial & UX
+Gemini's summary of that first build turned out to be the real guide for
+the whole project, before I got distracted restyling the app. It's now
+kept verbatim in `docs/process/curatormd_original_brief.md`.
+
+Two days later, back in Antigravity, I asked for an advisor agent to plan
+the analysis and propose "board members". It came back with five personas: a Formalist, an Industrial & UX
 Designer, a Cultural Semiotician, a Spatial Materialist, and a Colorist &
 Typographer. Those became the 5 Angles of a single structured prompt, one
 Gemini call per image, rather than five separate agents. After a

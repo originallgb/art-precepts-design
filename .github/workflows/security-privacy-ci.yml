@@ -44,6 +44,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Run sanitize.py --check
+        env:
+          PRIVATE_IDENTIFIERS_JSON: ${{ secrets.PRIVATE_IDENTIFIERS_JSON }}
         run: python3 scripts/sanitize.py --check
 
   data-integrity:

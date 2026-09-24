@@ -19,6 +19,8 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import hashlib
+import json
+import os
 import re
 import subprocess
 import sys
@@ -31,26 +33,71 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 # Allowlists and known identifiers
 # --------------------------------------------------------------------------
 
-# Antigravity/agy session UUIDs that get a stable pseudonym so the same
-# session reads consistently across docs, even where no surrounding
-# "agy/brain/session/conversation" keyword is present on the line.
-KNOWN_SESSION_UUIDS = [
-    "agy-session-2287",
-    "agy-session-912e",
-    "agy-session-addd",
-    "agy-session-654f",
-    "agy-session-bd7c",
-    "agy-session-bbab",
-    "agy-session-dde6",
-    "agy-session-700c",
-]
+# --------------------------------------------------------------------------
+# Private identifiers: NOT stored in this file.
+#
+# Low-entropy identifiers (usernames, the GCP project id, truncated session
+# id prefixes) cannot be hidden by hashing: a digest of "abc" falls to a
+# brute-force in milliseconds. They are loaded at run time from, in order:
+#   1. $PRIVATE_IDENTIFIERS_JSON  (the JSON itself, e.g. a CI secret)
+#   2. $PRIVATE_IDENTIFIERS_FILE  (a path)
+#   3. ~/.config/art-precepts/private-identifiers.json
+# Format: {"usernames": [...], "gcp_projects": [...], "session_uuids": [...]}
+# With no private source the generic public patterns below still apply
+# (any Windows/Unix home path, any keyword-tagged UUID, any private Drive
+# folder id, any non-allowlisted email) and the digests below still catch
+# the known session UUIDs, but bare username / project-id tokens are only
+# detected when the private file is available.
+# --------------------------------------------------------------------------
+
+DIGEST_PREFIX = "art-precepts/v1:"
+
+
+def uuid_digest(uuid_str: str) -> str:
+    return hashlib.sha256((DIGEST_PREFIX + uuid_str.lower()).encode("utf-8")).hexdigest()
+
+
+# SHA-256 digests of the known Antigravity/agy session UUIDs. A UUID has
+# ~122 bits of entropy so its digest is safe to publish. Matching UUID
+# tokens get the stable pseudonym below even with no keyword on the line.
+KNOWN_SESSION_UUID_DIGESTS = {
+    "aac1e8095138336e8041cf65faacec6dda2d6839ae5e8c3b0d276f739febc685",
+    "d5103efcffe4302a1d707156c0e10dcea9e165f3bfe9807038796f4527b64b83",
+    "43f64da1661e18379180d756daa5944826f3a0a29f0f3b76ad4e5b8da6c4eb7f",
+    "a614cf029c384f9ef8284f890f9f72c7838ca37f085c4f20849dd79a2e5305c1",
+    "4dd8b0ce9b87576e1cf2283491a91ef2537c4f4f2d6b1a88d66abb8268107843",
+    "4a3169a28d117a83cce3264a4e774027045aa27aacdfa5ec78e86a92128605ec",
+    "16aab051789c58dde1b374d6cd38991adad7f39689f2437ad50af487bfdfdf66",
+    "0d238f0166896ef45df704dfe28ff0648773eb6f523d65242c93d1ad9379c2fd",
+}
+
+
+def load_private_identifiers() -> dict:
+    ids = {"usernames": [], "gcp_projects": [], "session_uuids": []}
+    raw = os.environ.get("PRIVATE_IDENTIFIERS_JSON")
+    if not raw:
+        path = Path(os.environ.get("PRIVATE_IDENTIFIERS_FILE")
+                    or Path.home() / ".config" / "art-precepts" / "private-identifiers.json")
+        try:
+            raw = path.read_text(encoding="utf-8")
+        except OSError:
+            raw = None
+    if raw:
+        data = json.loads(raw)
+        for key in ids:
+            ids[key] = [str(v) for v in data.get(key, []) if str(v).strip()]
+    return ids
+
+
+PRIVATE = load_private_identifiers()
+PRIVATE_UUIDS = {u.lower() for u in PRIVATE["session_uuids"]}
 
 # UUIDs that must NEVER be touched even though they look like session ids.
 UUID_ALLOWLIST = {
     "0a93466a-7961-4bed-89c6-b216653cab85",  # AI Studio app id
 }
 
-# Context keywords: a UUID not in KNOWN_SESSION_UUIDS is only pseudonymised
+# Context keywords: a UUID not in the known digests/private list is only pseudonymised
 # when its line looks like it is naming an agy/brain/session/conversation.
 UUID_CONTEXT_KEYWORDS = ("agy", "brain", "session", "conversation", "subagent", "sender")
 
@@ -68,13 +115,10 @@ EMAIL_ALLOWED_SUFFIX = "@users.noreply.github.com"
 # Files/paths never scanned at all, even with --check.
 HARD_EXCLUDE_NAMES = {"bun.lock"}
 
-# Excluded from the repo-wide scan by default (still scanned when passed
-# explicitly on the command line, e.g. by the tests job).
-# scripts/sanitize.py itself is excluded: it necessarily contains the
-# literal rule text (the <user> token, the known session UUIDs, the <gcp-project>
-# id) as pattern source, not as a leak. Everything else in the repo is
-# still checked against it.
-DEFAULT_EXCLUDE_GLOBS = ["tests/fixtures/*", "tests/fixtures/**", "scripts/sanitize.py"]
+# Nothing is excluded from the repo-wide scan by default: scripts/sanitize.py
+# holds digests and generic patterns, never literals, and the tests
+# synthesise their leaky samples at run time instead of committing them.
+DEFAULT_EXCLUDE_GLOBS: List[str] = []
 
 # Rewritten by --fix everywhere EXCEPT these globs, where matches are still
 # reported by --check but the file content is left untouched.
@@ -88,7 +132,10 @@ def session_pseudonym(uuid_str: str) -> str:
     return f"agy-session-{digest[:4]}"
 
 
-SESSION_PSEUDONYMS = {u: session_pseudonym(u) for u in KNOWN_SESSION_UUIDS}
+
+def is_known_session_uuid(uuid_str: str) -> bool:
+    return uuid_digest(uuid_str) in KNOWN_SESSION_UUID_DIGESTS or uuid_str.lower() in PRIVATE_UUIDS
+
 
 
 # --------------------------------------------------------------------------
@@ -124,12 +171,12 @@ def _re(pattern: str, flags: int = 0) -> Pattern[str]:
 
 # --- 1. Antigravity/agy brain paths (apply before the generic user-path rule)
 _BRAIN_BS = _re(
-    r"(?:[A-Za-z]:\\+[Uu]sers\\+<user>\\+(?:Documents\\+)?)?"
+    r"(?:[A-Za-z]:\\+[Uu]sers\\+[^\\\s\"']+\\+(?:Documents\\+)?)?"
     r"\.gemini\\+antigravity\\+brain\\+(" + UUID_RE_TXT + r")\\+",
     re.IGNORECASE,
 )
 _BRAIN_FS = _re(
-    r"(?:[A-Za-z]:/+[Uu]sers/+<user>/+(?:Documents/+)?|~/+|/(?:Users|home)/[^/\s\"']+/+)?"
+    r"(?:[A-Za-z]:/+[Uu]sers/+[^/\s\"']+/+(?:Documents/+)?|~/+|/(?:Users|home)/[^/\s\"']+/+)?"
     r"\.gemini/+antigravity/+brain/+(" + UUID_RE_TXT + r")/+",
     re.IGNORECASE,
 )
@@ -145,14 +192,16 @@ def _brain_decide_fs(m: re.Match) -> Optional[str]:
 
 # --- 2. Antigravity repo paths
 _REPO_PEACEFUL_D = _re(r"[Dd]:\\+Antigravity\\+peaceful-turing")
-_REPO_PEACEFUL_LGB = _re(r"[Cc]:\\+[Uu]sers\\+<user>\\+Documents\\+antigravity\\+peaceful-turing")
-_REPO_PEACEFUL_LGB_FS = _re(r"[Cc]:/+[Uu]sers/+<user>/+Documents/+antigravity/+peaceful-turing")
+_REPO_PEACEFUL_USER_BS = _re(r"[Cc]:\\+[Uu]sers\\+[^\\\s\"']+\\+Documents\\+antigravity\\+peaceful-turing")
+_REPO_PEACEFUL_USER_FS = _re(r"[Cc]:/+[Uu]sers/+[^/\s\"']+/+Documents/+antigravity/+peaceful-turing")
 _REPO_WORKSPACE_D_BS = _re(r"[Dd]:\\+Antigravity\\+")
 _REPO_WORKSPACE_D_FS = _re(r"[Dd]:/+Antigravity/+")
 
-# --- 3. Generic Windows user path (%USERPROFILE%\... -> %USERPROFILE%\...)
-_WIN_USER_BS = _re(r"[A-Za-z]:\\+[Uu]sers\\+<user>\\+")
-_WIN_USER_FS = _re(r"[A-Za-z]:/+[Uu]sers/+<user>/+")
+# --- 3. Generic Windows user path (C:\Users\<any name>\... -> %USERPROFILE%\...)
+# System profiles and already-placeholdered names are not private.
+_WIN_USER_SKIP = r"(?!(?:Public|Default|All Users|Default User)[\\/])(?![%<])"
+_WIN_USER_BS = _re(r"[A-Za-z]:\\+[Uu]sers\\+" + _WIN_USER_SKIP + r"[^\\\s\"']+\\+")
+_WIN_USER_FS = _re(r"[A-Za-z]:/+[Uu]sers/+" + _WIN_USER_SKIP + r"[^/\s\"']+/+")
 
 # --- 4. G:\My Drive mirror
 _GDRIVE_BS = _re(r"[Gg]:\\+My\s+Drive\\+")
@@ -161,23 +210,32 @@ _GDRIVE_FS = _re(r"[Gg]:/+My\s+Drive/+")
 # --- 5. macOS/Linux home paths
 _UNIX_HOME = _re(r"/(?:Users|home)/[^/\s\"']+/")
 
-# --- 6. Standalone username token
-_USERNAME_LGB = _re(r"\bLGB\b")
+# --- 6. Standalone username token (from the private identifier source only)
+_USERNAME_TOKEN = (
+    _re(r"\b(?:" + "|".join(re.escape(u) for u in PRIVATE["usernames"]) + r")\b")
+    if PRIVATE["usernames"] else None
+)
 
 # --- 7. Antigravity session UUIDs (generic, context-gated)
 _UUID_ANY = _re(UUID_RE_TXT)
 
-# Truncated known session ids, e.g. "agy-session-2287" or "sender agy-session-912e" -
+# Truncated known session ids (the first 8 hex digits, optionally followed
+# by an ellipsis) -
 # still identifying even without the full UUID, so pseudonymise the same
 # known 8-hex first group on its own, word-bounded so it can't clip a
 # longer, unrelated hex run.
-_KNOWN_UUID_PREFIXES = {u.split("-")[0]: u for u in KNOWN_SESSION_UUIDS}
-_UUID_PREFIX_RE = _re(
-    r"\b(" + "|".join(re.escape(p) for p in _KNOWN_UUID_PREFIXES) + r")\b(-…|…)?"
+# Prefixes are 32 bits, so they come from the private source only.
+_KNOWN_UUID_PREFIXES = {u.split("-")[0].lower(): u.lower() for u in PRIVATE["session_uuids"]}
+_UUID_PREFIX_RE = (
+    _re(r"\b(" + "|".join(re.escape(p) for p in _KNOWN_UUID_PREFIXES) + r")\b(-…|…)?", re.IGNORECASE)
+    if _KNOWN_UUID_PREFIXES else None
 )
 
 # --- 8. GCP project id
-_GCP_PROJECT = _re(r"\bREDACTED-ID\b")
+_GCP_PROJECT = (
+    _re(r"\b(?:" + "|".join(re.escape(u) for u in PRIVATE["gcp_projects"]) + r")\b")
+    if PRIVATE["gcp_projects"] else None
+)
 
 # --- 9. Private Drive folder ids
 _DRIVE_FOLDER_URL = _re(r"drive/folders/([A-Za-z0-9_-]{6,})")
@@ -206,9 +264,9 @@ def build_rules() -> List[Rule]:
     rules.append(Rule("antigravity-repo", "Antigravity repo checkout path",
                        _REPO_PEACEFUL_D, lambda m: "<repo>"))
     rules.append(Rule("antigravity-repo", "Antigravity repo checkout path",
-                       _REPO_PEACEFUL_LGB, lambda m: "<repo>"))
+                       _REPO_PEACEFUL_USER_BS, lambda m: "<repo>"))
     rules.append(Rule("antigravity-repo", "Antigravity repo checkout path",
-                       _REPO_PEACEFUL_LGB_FS, lambda m: "<repo>"))
+                       _REPO_PEACEFUL_USER_FS, lambda m: "<repo>"))
     rules.append(Rule("antigravity-repo", "Antigravity workspace path",
                        _REPO_WORKSPACE_D_BS, lambda m: "<workspace>\\"))
     rules.append(Rule("antigravity-repo", "Antigravity workspace path",
@@ -227,16 +285,16 @@ def build_rules() -> List[Rule]:
     rules.append(Rule("unix-home-path", "macOS/Linux home path",
                        _UNIX_HOME, lambda m: "~/"))
 
-    rules.append(Rule("username-lgb", "Standalone username token",
-                       _USERNAME_LGB, lambda m: "<user>"))
+    if _USERNAME_TOKEN is not None:
+        rules.append(Rule("username-token", "Standalone username token",
+                           _USERNAME_TOKEN, lambda m: "<user>"))
 
     def _uuid_decide(m: re.Match) -> Optional[str]:
         uuid_val = m.group(0)
         if uuid_val.lower() in {u.lower() for u in UUID_ALLOWLIST}:
             return None
-        known = {u.lower(): p for u, p in SESSION_PSEUDONYMS.items()}
-        if uuid_val.lower() in known:
-            return known[uuid_val.lower()]
+        if is_known_session_uuid(uuid_val):
+            return session_pseudonym(uuid_val)
         line_start = m.string.rfind("\n", 0, m.start()) + 1
         line_end = m.string.find("\n", m.end())
         if line_end == -1:
@@ -248,15 +306,16 @@ def build_rules() -> List[Rule]:
 
     rules.append(Rule("agy-session-uuid", "Antigravity session UUID", _UUID_ANY, _uuid_decide))
 
-    def _uuid_prefix_decide(m: re.Match) -> Optional[str]:
-        full_uuid = _KNOWN_UUID_PREFIXES[m.group(1)]
-        return SESSION_PSEUDONYMS[full_uuid]
+    if _UUID_PREFIX_RE is not None:
+        def _uuid_prefix_decide(m: re.Match) -> Optional[str]:
+            return session_pseudonym(_KNOWN_UUID_PREFIXES[m.group(1).lower()])
 
-    rules.append(Rule("agy-session-uuid", "Truncated Antigravity session id",
-                       _UUID_PREFIX_RE, _uuid_prefix_decide))
+        rules.append(Rule("agy-session-uuid", "Truncated Antigravity session id",
+                           _UUID_PREFIX_RE, _uuid_prefix_decide))
 
-    rules.append(Rule("gcp-project-id", "Hardcoded GCP project id",
-                       _GCP_PROJECT, lambda m: "<gcp-project>"))
+    if _GCP_PROJECT is not None:
+        rules.append(Rule("gcp-project-id", "Hardcoded GCP project id",
+                           _GCP_PROJECT, lambda m: "<gcp-project>"))
 
     def _drive_url_decide(m: re.Match) -> Optional[str]:
         if _drive_id_ok(m.group(1)):
@@ -406,7 +465,10 @@ def run(mode: str, explicit_paths: List[str], excludes: List[str], use_stdin: bo
         except (UnicodeDecodeError, OSError):
             continue
 
-        rel_posix = f.resolve().relative_to(REPO_ROOT).as_posix()
+        try:
+            rel_posix = f.resolve().relative_to(REPO_ROOT).as_posix()
+        except ValueError:  # explicit path outside the repo
+            rel_posix = str(f)
         rewritable = mode == "fix" and not matches_any_glob(rel_posix, NO_REWRITE_GLOBS)
 
         new_content, findings = process_text(content, rules, rel_posix, allow_rewrite=rewritable)
@@ -447,8 +509,53 @@ def run(mode: str, explicit_paths: List[str], excludes: List[str], use_stdin: bo
     return 0
 
 
+def _pat_bytes_regex(pat: Pattern[str]) -> str:
+    """Python pattern -> filter-repo `regex:` body (IGNORECASE inlined)."""
+    body = pat.pattern
+    return f"(?i:{body})" if pat.flags & re.IGNORECASE else body
+
+
+def _esc_repl(repl: str) -> str:
+    return repl.replace("\\", "\\\\")
+
+
+def emit_filter_repo_rules(out_path: str) -> int:
+    """Write git-filter-repo --replace-text expressions derived from the
+    same rules as --fix. The file necessarily contains the private literals,
+    so it must live OUTSIDE the repo and is created 0600."""
+    out = Path(out_path).resolve()
+    if REPO_ROOT in out.parents:
+        print("refusing to write literals inside the repo tree", file=sys.stderr)
+        return 2
+    rendered: List[str] = []
+    # Constant-replacement rules, in build_rules() order (same precedence as
+    # --fix). Match-dependent rules (UUIDs, Drive ids, emails) are expanded
+    # explicitly below or, for emails, are check-only.
+    for rule in build_rules():
+        if rule.id in ("personal-email", "agy-session-uuid", "drive-folder-id"):
+            continue
+        repl = rule.decide(None)  # these decide() callables ignore the match
+        rendered.append(f"regex:{_pat_bytes_regex(rule.pattern)}==>{_esc_repl(repl)}")
+    # Known session UUIDs and prefixes (need the private source).
+    for u in sorted(PRIVATE_UUIDS):
+        rendered.append(f"{u}==>{session_pseudonym(u)}")
+    for pref, full in sorted(_KNOWN_UUID_PREFIXES.items()):
+        rendered.append(f"regex:\\b{re.escape(pref)}\\b(?:-…|…)?==>{session_pseudonym(full)}")
+    allow = "|".join(re.escape(x) for x in sorted(SHEET_ID_ALLOWLIST) + [DRIVE_FOLDER_REDACTED])
+    idre = r"[A-Za-z0-9_-]{6,}"
+    rendered.append(f"regex:drive/folders/(?!(?:{allow})(?![A-Za-z0-9_-])){idre}==>drive/folders/{DRIVE_FOLDER_REDACTED}")
+    rendered.append(f'regex:FOLDER_ID\\s*=\\s*"(?!(?:{allow})")' + idre + f'"==>FOLDER_ID = "{DRIVE_FOLDER_REDACTED}"')
+    out.write_text("\n".join(rendered) + "\n", encoding="utf-8")
+    out.chmod(0o600)
+    print(f"wrote {len(rendered)} expressions to {out}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    if "--emit-filter-repo-rules" in sys.argv:
+        idx = sys.argv.index("--emit-filter-repo-rules")
+        return emit_filter_repo_rules(sys.argv[idx + 1])
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--check", action="store_true", help="report violations, exit 1 if any found")
     mode.add_argument("--fix", action="store_true", help="rewrite fixable violations in place")
@@ -456,6 +563,9 @@ def main() -> int:
                          help="glob (relative to repo root) to skip; repeatable")
     parser.add_argument("--stdin", action="store_true",
                          help="read content from stdin instead of scanning tracked files")
+    parser.add_argument("--emit-filter-repo-rules", metavar="FILE",
+                         help="write git-filter-repo --replace-text expressions (contains private "
+                              "literals; must be outside the repo) and exit")
     parser.add_argument("paths", nargs="*", help="specific files/dirs to scan instead of the full tree")
     args = parser.parse_args()
 

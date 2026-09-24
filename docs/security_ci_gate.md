@@ -36,9 +36,8 @@ and adds an allowlist for:
 - this repo's own redaction placeholders (`REDACTED_DRIVE_FOLDER_ID`,
   `<agy-session>`, `<repo>`, `<workspace>`, `<drive-mirror>`, `<user>`,
   `<gcp-project>`, and the `agy-session-xxxx` pseudonyms)
-- `tests/fixtures/leaky/`, which exists specifically to contain a
-  fake-but-pattern-valid secret; it is scanned by the `tests` job instead,
-  through `scripts/sanitize.py`, not by gitleaks
+- (no fixture paths: the tests synthesise their deliberately leaky samples
+  at run time from string fragments, so no leak-shaped text is ever committed)
 
 `gitleaks-action` only needs a `GITLEAKS_LICENSE` secret for GitHub
 Organisation accounts. This repo is on a personal account, so the free tier
@@ -67,9 +66,7 @@ parse or run.
 
 Runs `python3 -m unittest discover tests -v`, which exercises
 `scripts/sanitize.py` and `scripts/validate_data.py` directly, including
-against `tests/fixtures/leaky/` (explicitly, bypassing the default exclusion
-that keeps those fixtures out of the repo-wide `privacy` scan and out of
-gitleaks).
+against leaky samples generated in a temporary directory.
 
 ### release-gate
 
@@ -80,8 +77,15 @@ whatever GitHub's default fan-in behaviour would otherwise do.
 ## scripts/sanitize.py
 
 Single source of truth for the private-identifier rules. Stdlib only. The
-script's own source is excluded from the scan it runs (it necessarily
-contains the rule patterns as literal text; that is not the same as a leak).
+script is scanned like any other file: it holds no private literals. Known
+session UUIDs are stored as salted SHA-256 digests; usernames, the GCP
+project id and truncated session prefixes are low-entropy, so they are read
+at run time from `$PRIVATE_IDENTIFIERS_JSON`, `$PRIVATE_IDENTIFIERS_FILE` or
+`~/.config/art-precepts/private-identifiers.json` (never committed). Without
+that source the generic patterns (any Windows/Unix home path, keyword-tagged
+UUIDs, Drive folder ids, emails) and the UUID digests still apply. In CI the
+optional `PRIVATE_IDENTIFIERS_JSON` repository secret enables the full set on
+pushes and same-repository PRs (forks do not receive secrets).
 
 | Rule id | What it catches | Fixable |
 |---|---|---|
@@ -90,7 +94,7 @@ contains the rule patterns as literal text; that is not the same as a leak).
 | `windows-user-path` | the owner's Windows profile path, any drive-letter case, backslash or forward-slash | yes, replaced by `%USERPROFILE%\...` |
 | `gdrive-mirror` | the owner's local Google Drive Desktop mirror path | yes, replaced by `<drive-mirror>\...` |
 | `unix-home-path` | any macOS/Linux home directory path (under `Users` or `home`) | yes, replaced by `~/` |
-| `username-lgb` | the owner's initials as a standalone, case-sensitive token (word-bounded, so it never touches the GitHub handle that happens to contain the same letters) | yes, replaced by `<user>` |
+| `username-token` | any username listed in the private identifier source, as a standalone, case-sensitive, word-bounded token | yes, replaced by `<user>` |
 | `agy-session-uuid` | this project's known Antigravity session ids, always; any other UUID only when its line mentions agy/brain/session/conversation/subagent/sender | yes, replaced by a stable `agy-session-<4 hex>` pseudonym (`sha256(uuid)[:4]`), so the same session reads consistently across docs |
 | `gcp-project-id` | the project's hardcoded GCP project id | yes, replaced by `<gcp-project>` in docs (in code, fixed by hand instead: `pipeline/run_full_vision_pipeline.py` now calls `paths.gcp_project_id()`, which reads `GCP_PROJECT` from the environment and raises a clear error if unset) |
 | `drive-folder-id` | `drive/folders/<id>` links and `FOLDER_ID = "<id>"` literals | yes, replaced by `REDACTED_DRIVE_FOLDER_ID` |
@@ -102,9 +106,8 @@ Drive file ids in `data/` and `catalogue/` frontmatter (these are not the
 private *folder* id, just per-asset references), and the AI Studio app id
 used by the CuratorMD sub-project.
 
-Scope: every file tracked by git, except `bun.lock`, binary files, and
-`scripts/sanitize.py` itself. `tests/fixtures/leaky/` is excluded from the
-default repo-wide scan (but is scanned explicitly by the `tests` job).
+Scope: every file tracked by git, except `bun.lock`, and binary files.
+Nothing else is excluded.
 `data/*.json` and `data/*.tsv` are scanned by `--check` but never rewritten
 by `--fix`: a finding there is reported, not silently edited, because the
 datasets are immutable by project rule (see `GEMINI.md`).
@@ -114,9 +117,13 @@ datasets are immutable by project rule (see `GEMINI.md`).
 ```sh
 python3 scripts/sanitize.py --check
 python3 scripts/sanitize.py --fix              # rewrites fixable violations in place
-python3 scripts/sanitize.py --check tests/fixtures/leaky   # scan a specific path
+python3 scripts/sanitize.py --check path/to/file   # scan a specific path
 git log -p --all | python3 scripts/sanitize.py --check --stdin   # scan history text
 ```
+
+`python3 scripts/sanitize.py --emit-filter-repo-rules FILE` writes the
+`git filter-repo --replace-text` expressions (0600, refuses paths inside the
+repo; the file contains the private literals).
 
 Use `--exclude GLOB` (repeatable) to skip a path, for example
 `--exclude README.md` when the maintainer is actively editing it and it

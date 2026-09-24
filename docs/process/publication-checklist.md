@@ -4,10 +4,11 @@ Target: publish a secure, honestly described work in progress. A finished
 playbook, improved clustering, a polished app and a complete case study
 are **not** requirements for the first public version.
 
-This is a short companion to [release issue #5](https://github.com/originallgb/art-precepts-design/issues/5)
-and the existing [security gate](https://github.com/originallgb/art-precepts-design/issues/1).
-It does not declare either complete. Snapshot: 24 September 2026, repository
-still private; release PRs #3 and #4 open.
+The security gate and go-public checklist (former issues #1 and #5) live in the
+private working repository, not here. Snapshot: 24 September 2026. The public
+repository was created from a scrubbed history: private identifiers removed,
+museum descriptions, Drive references and thumbnail URLs left out of the data,
+and no old pull request refs carried over.
 
 ## Before changing visibility
 
@@ -24,7 +25,7 @@ still private; release PRs #3 and #4 open.
 - [ ] Verify linked Sheet access and that private Drive images/folders remain
   private. A link or file ID does not establish its permissions. Remove an
   unavailable public-facing link rather than inventing its status.
-- [ ] Review the final release evidence against issue #1, then change visibility
+- [ ] Review the final release evidence against the security gate, then change visibility
   and enable the required branch checks. Verify the public README and its
   links without relying on the owner's signed-in access.
 

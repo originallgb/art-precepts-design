@@ -1,4 +1,4 @@
-# Design precepts from 801 favourites
+# Art Precepts Design
 
 Years of saved favourites on Google Arts & Culture, turned into a corpus I
 can reference and translate into `design.md` specs for UX work, interiors,
@@ -15,6 +15,20 @@ amendable corpus I can query when making real design decisions, and from
 which to seed `design.md` playbooks (colour tokens, layout rules, material
 cues, do's and don'ts) for UX projects, interior design, and wider design
 language work.
+
+## The name
+
+The project started as `art-to-design`. When I recreated the repo on
+2026-09-05 to shed the AI Studio template it had been generated from, I
+renamed it `art-precepts-design`. Art and Design sit on the flanks, and
+Precepts, the rules the pipeline extracts, hold the middle as the bridge
+between them. The agent read that as a chiasmus. I'd call it a synchysis:
+art and design aren't mirrored, they're interlocked, with the precepts
+woven through both. It also made me do a double take. English expects
+`art-design-precepts`, a flat compound. Putting precepts in the middle
+inverts that into a sequence, art to precepts to design, which is the
+pipeline in three words. That small bit of syntactic friction is the
+point, and I've since written it into my naming rules.
 
 ## Why in public
 
@@ -231,6 +245,9 @@ Newest first, one or two sentences each. The longer write-ups live in
   view-only, and kept museum text with credit. Retracing the analysis for
   these docs also corrected the telemetry audit's cost, $0.077 to at least
   $2.08.
+- **2026-09-05, renamed to art-precepts-design**: recreated the repo
+  without its AI Studio template lineage and renamed it from
+  `art-to-design`. The old repo was kept as an archive.
 - **2026-09-05, Phase 5 clustering and ADR 001**: k-means over a 59-dim
   feature vector produced 10 clusters, a change from the UMAP/HDBSCAN
   approach in the plan. ADR 001 stays `PROPOSED`; Grok's review found it

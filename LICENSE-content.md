@@ -25,8 +25,9 @@ Gemini API as noted above.
   third-party works held by museums and partner institutions, on loan via
   Google Arts & Culture. Nothing here grants any right to them; find each
   one at the source link in its catalogue note.
-- **Museum and curatorial metadata.** Fields such as `curatorial_description`,
-  `credit_line`, `provenance`, and similar values in `data/` remain the
-  copyright of the partner institutions that supplied them via Google Arts
-  & Culture. They're kept here for reference and citation only, not for
-  reuse.
+- **Museum and curatorial metadata.** Museum-authored descriptions, credit
+  lines and provenance text are not included in this repository. Any
+  remaining museum-supplied values in `data/`, such as titles, dates and
+  holding institutions, remain the copyright of the partner institutions
+  that supplied them via Google Arts & Culture. They're kept here for
+  reference and citation only, not for reuse.

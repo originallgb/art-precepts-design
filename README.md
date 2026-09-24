@@ -68,7 +68,8 @@ or read the [longer project history](docs/process/2026-09-24-readme-archive.md).
 
 ## Sources and licence
 
-Artwork images are not included. Catalogue notes link to their sources.
-Museum-supplied text and metadata retain their own rights and are excluded
+Artwork images and museum-supplied descriptions are not included. Catalogue
+notes link to their sources. Remaining museum-supplied metadata, such as
+titles and holding institutions, retains its own rights and is excluded
 from this project's content licence. Code is [MIT](LICENSE); original
 writing and generated analysis are covered by the [content licence](LICENSE-content.md).

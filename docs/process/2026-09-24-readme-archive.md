@@ -276,8 +276,9 @@ public. Each catalogue note links to its GAC source page instead.
 
 `curatorial_description` and the other museum-supplied metadata in `data/`
 remain the copyright of the partner institutions that supplied them via
-Google Arts & Culture. They're kept with each row's `credit_line` and
-`link`, for reference and citation.
+Google Arts & Culture. *(Correction: the descriptions, credit lines and
+provenance were later removed from the public release; the remaining
+metadata is kept with each row's `link`, for reference and citation.)*
 
 My own writing, and the AI-generated critiques and heuristics in
 `catalogue/`, are licensed CC BY 4.0; see `LICENSE-content.md`. Code is

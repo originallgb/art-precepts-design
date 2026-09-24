@@ -1,0 +1,6 @@
+{
+  "name": "CuratorMD - Art to Design System",
+  "description": "Transform favorited Google Arts & Culture artworks from Google Sheets into compositional analyses, non-obvious curatorial themes, and production-ready design.md guidelines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

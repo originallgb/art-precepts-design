@@ -199,6 +199,7 @@ Drive mirror steps) and are kept for the record rather than for reuse.
 ## Repo map
 
 ```
+apps/curatormd/     the first attempt: a Google AI Studio app (2026-09-02)
 catalogue/          801 markdown notes, one per artwork
 clusters/           cluster manifest and a 2D latent map (Phase 5)
 data/               favourites at each stage (raw, enriched, analysed, clustered)

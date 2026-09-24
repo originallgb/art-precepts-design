@@ -20,7 +20,7 @@ All outputs have been synchronized across local storage, Google Drive Desktop, G
 - Generated in `Google Arts & Culture/catalogue/`:
   - 801 individual Markdown notes formatted for **Obsidian / Logseq**.
   - Complete YAML frontmatter with curatorial IDs, dimensions, aspect ratios, palette hex codes, and museum partners.
-  - Relative preview image links (`![...](../images/...)`).
+  - Relative preview image links (`![...](../images/...)`). *(Historical note: the images were later dropped for copyright reasons; catalogue notes now link out to the Google Arts & Culture source instead.)*
   - Sections for **Precept Critique**, **Actionable Design Heuristics**, **The 5 Evaluative Angles**, and an editable **User Notes & Project Overrides** section.
   - Mirrored to Google Drive Desktop (`<drive-mirror>\Google Arts & Culture\catalogue\`).
 

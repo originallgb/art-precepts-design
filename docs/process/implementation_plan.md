@@ -97,8 +97,8 @@ flowchart TD
 * **Execution**: Synthesize remaining `design.md` playbooks across all clusters.
 * **Pragmatic Local Verification Suite (`scratch/test_phase2_integrity.py`)**:
   1. **Schema & Count Test**: Assert all 801 items exist in `favorites_clustered.json` with valid `cluster_id` and non-null attributes.
-  2. **Catalogue File Test**: Assert exactly 801 files exist in `Google Arts & Culture/catalogue/`, each with valid YAML frontmatter containing `cluster_id`.
-  3. **Path Resolution Test**: Assert that all relative image links (`![...](../images/...)`) point to actual files existing on disk.
+  2. **Catalogue File Test**: Assert exactly 801 files exist in `Google Arts & Culture/catalogue/`, each with valid YAML frontmatter containing `cluster_id`. *(Historical note: the repo was later flattened and `catalogue/` now sits at the repo root.)*
+  3. **Path Resolution Test**: Assert that all relative image links (`![...](../images/...)`) point to actual files existing on disk. *(Historical note: the images were later dropped for copyright reasons; catalogue notes now link out to the Google Arts & Culture source instead.)*
   4. **Playbook Token Test**: Assert all `design.md` playbooks contain valid hex color codes and required markdown headings.
   5. **Banned Terminology Test**: Automated regex scan across all generated files asserting zero occurrences of "Genome", "Living", or banned art-historical clichés.
 * **Git Delivery**: Commit atomic sub-phase changes to branch `feat/phase-2-clustering-and-playbooks` and open a Pull Request against `main`.

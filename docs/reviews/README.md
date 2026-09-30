@@ -57,3 +57,10 @@ These are not reviews/audits (plans, governance, or GitHub objects):
 
 - [30 September: handoff review](2026-09-30-art-precepts-handoff-review.md): recovered request, composition/spatial-structure focus, image-source inventory and proposed evaluation.
 - [30 September: primary-source review](2026-09-30-visual-retrieval-source-review.md): retrieval versus style transfer, implementation observations and experiment contract.
+
+## Correction: two independent research threads
+
+The following dated correction governs interpretation of the research scope above. The earlier reports are preserved unchanged as historical outputs.
+
+- [30 September: corrected research brief](2026-09-30-research-intent-correction.md): Grant clarified that Image Toolbox/model exploration and pipeline embeddings are independent interests with open outcomes. This supersedes the earlier reports' intent, priority and sequencing conclusions.
+- [30 September: Image Toolbox source context](2026-09-30-image-toolbox-model-context.md): documented model capabilities and limits on identifying the exact options encountered.

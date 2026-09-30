@@ -52,3 +52,8 @@ These are not reviews/audits (plans, governance, or GitHub objects):
 | `plans/draft_plan_1_design_precepts.md` | Plan packet. Advisor subagent used Antigravity `Model=pro` at 2026-09-04 10:14. |
 | [GitHub Issue #1](https://github.com/originallgb/art-to-design/issues/1) | Incident ticket, not a markdown audit. The linked repository is now a private archive; see `docs/process/2026-09-04-sheet-overwrite-incident.md` for the verbatim body. |
 | [GitHub PR #2](https://github.com/originallgb/art-to-design/pull/2) | Merge vehicle for the telemetry audit. The linked repository is now a private archive; see `docs/process/2026-09-04-sheet-overwrite-incident.md` for the verbatim body. |
+
+## Visual retrieval research
+
+- [30 September: handoff review](2026-09-30-art-precepts-handoff-review.md): recovered request, composition/spatial-structure focus, image-source inventory and proposed evaluation.
+- [30 September: primary-source review](2026-09-30-visual-retrieval-source-review.md): retrieval versus style transfer, implementation observations and experiment contract.
